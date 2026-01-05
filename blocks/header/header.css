@@ -34,9 +34,9 @@ header nav[aria-expanded='true'] {
   header nav {
     display: flex;
     justify-content: space-between;
-    gap: 0 32px;
-    max-width: 1264px;
-    padding: 0 32px;
+    /* gap: 0 32px; */
+    max-width: 1082px;
+    /* padding: 0 32px; */
   }
 
   header nav[aria-expanded='true'] {
@@ -51,7 +51,46 @@ header nav p {
 }
 
 header nav a:any-link {
-  color: currentcolor;
+  color: var(--nav-color);
+}
+
+header nav a.button:any-link,
+button {
+  box-sizing: border-box;
+  display: inline-block;
+  max-width: 100%;
+  margin: 12px 0;
+  /* border: 2px solid transparent; */
+  /* border-radius: 2.4em; */
+  /* padding: 0.5em 1.2em; */
+  font-family: var(--body-font-family);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+  /* background-color: var(--link-color); */
+  color: var(--nav-color);
+  cursor: pointer;
+  overflow: hidden;
+  /* text-overflow: ellipsis; */
+  white-space: nowrap;
+}
+
+header nav a.button:hover,
+a.button:focus,
+button:hover,
+button:focus {
+  background-color: var(--link-hover-color);
+  cursor: pointer;
+  color: var(--nav-color);
+}
+
+header nav a.button.btn-nav,
+button.btn-nav {
+  background-color: unset;
+  /* border: 2px solid currentcolor; */
+  color: var(--nav-color);
 }
 
 /* hamburger */
@@ -152,7 +191,7 @@ header nav .nav-brand img {
 /* sections */
 header nav .nav-sections {
   grid-area: sections;
-  flex: 1 1 auto;
+  /* flex: 1 1 auto; */
   display: none;
   visibility: hidden;
 }

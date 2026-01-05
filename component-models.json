@@ -114,6 +114,10 @@
           {
             "name": "secondary",
             "value": "secondary"
+          },
+          {
+            "name": "nav-button",
+            "value": "btn-nav"
           }
         ]
       }
@@ -176,30 +180,6 @@
         "name": "rows",
         "value": "",
         "label": "Rows"
-      }
-    ]
-  },
-  {
-    "id": "customheader-content",
-    "fields": [
-      {
-        "component": "reference",
-        "name": "media",
-        "label": "Image / Icon",
-        "valueType": "string",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "name": "content",
-        "label": "Text / Navigation",
-        "valueType": "string"
-      },
-      {
-        "component": "textfield",
-        "name": "link",
-        "label": "Link URL",
-        "valueType": "string"
       }
     ]
   },

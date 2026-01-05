@@ -15,8 +15,7 @@
       "hero",
       "cards",
       "columns",
-      "fragment",
-      "customheader"
+      "fragment"
     ]
   },
   {
@@ -38,12 +37,6 @@
       "image",
       "button",
       "title"
-    ]
-  },
-  {
-    "id": "customheader",
-    "components": [
-      "customheader-content"
     ]
   }
 ]
