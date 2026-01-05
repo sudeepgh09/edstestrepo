@@ -81,7 +81,7 @@ button:focus {
 }
 
 a.button:active{
-  color: white;
+  color: var(--light-color);
 
 }
 
