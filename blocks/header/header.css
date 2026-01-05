@@ -54,12 +54,12 @@ header nav a:any-link {
   font-size: 16px;
 }
 
-header nav a.button:any-link,
+a.button:any-link,
 button {
   display: inline-block;
   max-width: 100%;
   margin: 12px 0;
-  font-family: 'Vulf Sans';
+  font-family: var(--body-font-family);
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -72,19 +72,20 @@ button {
   white-space: nowrap;
 }
 
-header nav a.button:hover,
+a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
   cursor: pointer;
   color: var(--nav-color);
 }
-header nav a.button:active{
+
+a.button:active{
   color: white;
 
 }
 
-header nav a.button.btn-nav,
+a.button.btn-nav,
 button.btn-nav {
   background-color: unset;
   color: var(--nav-color);
