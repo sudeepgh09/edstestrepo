@@ -493,6 +493,30 @@ function decorateIcons(element, prefix = '') {
     decorateIcon(span, prefix);
   });
 }
+/**Add title or text color by the class text-modifier,
+ *  authors just have to provide color name within colons before and after the colorname
+ *  e.g, :color-colorname:*/
+function decorateTextColors(element) {
+  const colorSpans = element.querySelectorAll('span.text-modifier');
+
+  colorSpans.forEach((span) => {
+    const colorClass = Array.from(span.classList)
+      .find((c) => c.startsWith('color-'));
+
+    if (!colorClass) return;
+
+    const parent = span.previousSibling;
+
+    if (parent && parent.nodeType === Node.TEXT_NODE) {
+      const wrapper = document.createElement('span');
+      wrapper.classList.add(colorClass);
+      wrapper.textContent = parent.textContent;
+
+      parent.replaceWith(wrapper);
+      span.remove();
+    }
+  });
+}
 
 /**
  * Decorates all sections in a container element.
@@ -735,4 +759,5 @@ export {
   toClassName,
   waitForFirstImage,
   wrapTextNodes,
+  decorateTextColors,
 };
