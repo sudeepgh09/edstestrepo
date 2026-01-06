@@ -497,26 +497,19 @@ function decorateIcons(element, prefix = '') {
  *  authors just have to provide color name within colons before and after the colorname
  *  e.g, :color-colorname:*/
 function decorateTextColors(element) {
-  const colorSpans = element.querySelectorAll('span.text-modifier');
-
-  colorSpans.forEach((span) => {
-    const colorClass = Array.from(span.classList)
-      .find((c) => c.startsWith('color-'));
-
+  element.querySelectorAll('span[class*="color-"]').forEach((span) => {
+    const colorClass = [...span.classList].find((c) => c.startsWith('color-'));
     if (!colorClass) return;
 
-    const parent = span.previousSibling;
+    const heading = span.closest('h1, h2, h3, h4, h5, h6, p');
+    if (!heading) return;
 
-    if (parent && parent.nodeType === Node.TEXT_NODE) {
-      const wrapper = document.createElement('span');
-      wrapper.classList.add(colorClass);
-      wrapper.textContent = parent.textContent;
-
-      parent.replaceWith(wrapper);
-      span.remove();
-    }
+    heading.classList.add(colorClass);
+    span.remove();
   });
 }
+
+
 
 /**
  * Decorates all sections in a container element.
@@ -639,6 +632,7 @@ function decorateBlock(block) {
     block.dataset.blockName = shortBlockName;
     block.dataset.blockStatus = 'initialized';
     wrapTextNodes(block);
+    decorateTextColors(block);
     const blockWrapper = block.parentElement;
     blockWrapper.classList.add(`${shortBlockName}-wrapper`);
     const section = block.closest('.section');
