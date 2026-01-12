@@ -257,3 +257,6 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+main .section.cards-grid-style{
+  background-color: antiquewhite;
+}
