@@ -192,3 +192,29 @@
     width: 100%;
   }
 }
+.cards-grid-style{
+     display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cards-grid-style .sovm-cards-wrapper {
+    flex: 0 0 calc(33.33% - 10px);
+    margin-bottom: 20px; 
+}
+.cards-grid-style .sovm-cards-wrapper .sovm-cards{
+  margin-inline: 20px;
+}
+.cards-grid-style .sovm-cards-wrapper{
+  max-width: 100%;
+  width: 373px;
+  margin-block: 36px 0;
+  margin-inline: auto;
+
+}
+@media (width >= 900px) {
+    .cards-grid-style .sovm-cards-wrapper {
+        padding: 0;
+    }
+  }
