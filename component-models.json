@@ -140,6 +140,10 @@
           {
             "name": "Highlight",
             "value": "highlight"
+          },
+          {
+            "name": "Cards Grid Style",
+            "value": "cards-grid-style"
           }
         ]
       }
