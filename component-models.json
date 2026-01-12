@@ -222,5 +222,65 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "sovm-cards",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "select",
+        "name": "size",
+        "label": "Card Size",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Small",
+            "value": "card-small"
+          },
+          {
+            "name": "Large",
+            "value": "card-large"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "style",
+        "label": "Button Style",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Button in Card",
+            "value": "card-button-body"
+          },
+          {
+            "name": "Button in Header",
+            "value": "card-button-header"
+          }
+        ]
+      },
+      {
+        "component": "aem-content",
+        "name": "button",
+        "label": "Button"
+      }
+    ]
   }
 ]

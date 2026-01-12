@@ -73,8 +73,8 @@
         },
         {
           "component": "aem-content",
-          "name": "refrence",
-          "label": "Reference"
+          "name": "button",
+          "label": "Button"
         }
       ]
     }
