@@ -63,7 +63,6 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     ? !forceExpanded
     : nav.getAttribute('aria-expanded') === 'true';
 
-  // 🔑 IMPORTANT: sync CSS state for mobile full-screen menu
   const header = nav.closest('header');
   header?.classList.toggle('nav-open', !expanded && !isDesktop.matches);
 
@@ -125,21 +124,17 @@ export default async function decorate(block) {
   const nav = document.createElement('nav');
   nav.id = 'nav';
 
-  // append fragment content
   while (fragment.firstElementChild) {
     nav.append(fragment.firstElementChild);
   }
 
-  // extract authorable fragment container (top strip)
   const fragmentContainer = nav.querySelector('.fragment-container');
 
-  // assign nav section classes
   ['brand', 'sections', 'tools'].forEach((cls, i) => {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${cls}`);
   });
 
-  // cleanup brand button styles
   const navBrand = nav.querySelector('.nav-brand');
   const brandLink = navBrand?.querySelector('.button');
   if (brandLink) {
@@ -147,7 +142,6 @@ export default async function decorate(block) {
     brandLink.closest('.button-container')?.classList.remove('button-container');
   }
 
-  // nav sections behavior
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections
@@ -161,16 +155,12 @@ export default async function decorate(block) {
           if (isDesktop.matches) {
             const expanded = navSection.getAttribute('aria-expanded') === 'true';
             toggleAllNavSections(navSections);
-            navSection.setAttribute(
-              'aria-expanded',
-              expanded ? 'false' : 'true',
-            );
+            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
           }
         });
       });
   }
 
-  // hamburger
   const hamburger = document.createElement('div');
   hamburger.className = 'nav-hamburger';
   hamburger.innerHTML = `
@@ -186,7 +176,6 @@ export default async function decorate(block) {
   toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 
-  // build nav-wrapper with fragment on top
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
 

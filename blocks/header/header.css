@@ -11,7 +11,6 @@ header .nav-wrapper {
   left: 0;
   display: flex;
   flex-direction: column;
-
   padding: 0;
 }
 
@@ -146,6 +145,7 @@ button {
   cursor: pointer;
   white-space: nowrap;
   padding: 8px;
+  color: var(--light-color);
 }
 
 header nav a.button:hover,
@@ -155,7 +155,7 @@ button:focus {
   color: var(--nav-color);
 }
 @media (width < 768px) {
-  header nav a[aria-current='page'] {
+  header nav .nav-sections .button[aria-current='page'] {
     color: var(--nav-color);
     font-weight: 700;
   }
@@ -211,7 +211,7 @@ header nav .nav-hamburger button {
   margin: 0;
   border: 0;
   padding: 0;
-  color: white;
+  color: var(--light-color);
   background: none;
   position: fixed;
   right: 30px;
@@ -359,7 +359,6 @@ header nav .nav-sections .default-content-wrapper{
 
   /* Icons first */
   header nav[aria-expanded='true'] .nav-tools {
-    /* order: 1; */
     padding: 36px 16px 16px 16px;
     border-bottom: 1px solid var(--light-color);
     background: var(--light-color);
@@ -367,7 +366,6 @@ header nav .nav-sections .default-content-wrapper{
 
   /* Nav items next */
   header nav[aria-expanded='true'] .nav-sections {
-    /* order: 2; */
     padding: 0;
     background: var(--light-color);
   }
@@ -436,7 +434,7 @@ header nav .nav-sections ul {
     right: 8%;
     width: 4px;
     height: 4px;
-    border: 2px solid #fff;
+    border: 2px solid var(--light-color);
     border-width: 1.5px 1.5px 0 0;
     transform: rotate(135deg);
   }
@@ -449,7 +447,7 @@ header nav .nav-sections ul {
     min-width: 150px;
     padding: 16px;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     background-color: var(--light-color);
   }
 
@@ -467,7 +465,7 @@ header nav .nav-sections ul {
     padding: 8px;
     padding-top: 12px;
     border-radius: 14px;
-    border-color: #282b3a;
+    border-color: var(--sovm-header);
     background-color: var(--light-color);
     white-space: initial;
   }
@@ -504,7 +502,6 @@ header nav .nav-tools .icon {
 }
   header nav .nav-tools .icon{
   filter: brightness(1) invert(0);
-
 }
 }
 
