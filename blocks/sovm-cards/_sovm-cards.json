@@ -17,7 +17,7 @@
     },
     {
       "title": "Sovm Card Container",
-      "id": "sovm-card-container",
+      "id": "sovm-card",
       "plugins": {
         "xwalk": {
           "page": {
@@ -33,7 +33,7 @@
   ],
   "models": [
     {
-      "id": "sovm-card-container",
+      "id": "sovm-card",
       "fields": [
         {
           "component": "reference",
