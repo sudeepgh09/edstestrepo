@@ -173,14 +173,14 @@
           }
         },
         {
-          "title": "Sovm Card Container",
+          "title": "Sovm Card",
           "id": "sovm-card",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Sovm Card Container",
+                  "name": "Sovm Card",
                   "model": "sovm-card"
                 }
               }
