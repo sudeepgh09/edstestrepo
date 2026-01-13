@@ -192,29 +192,47 @@
     width: 100%;
   }
 }
-.cards-grid-style{
-     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
+/*Start of Section style - Cards Grid */
+.section.cards-grid-style {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  gap: 36px 32px; 
+  margin-top: 120px;
 }
 
-.cards-grid-style .sovm-cards-wrapper {
-    flex: 0 0 calc(33.33% - 10px);
-    margin-bottom: 20px; 
+/* Each card wrapper */
+.section.cards-grid-style .sovm-cards-wrapper {
+  flex: 0 0 373px; 
+  max-width: 373px;
+  display: flex;
+  justify-content: center;
+  margin: 0;
 }
-.cards-grid-style .sovm-cards-wrapper .sovm-cards{
-  margin-inline: 20px;
-}
-.cards-grid-style .sovm-cards-wrapper{
-  max-width: 100%;
-  width: 373px;
-  margin-block: 36px 0;
-  margin-inline: auto;
 
+/* Card itself */
+.section.cards-grid-style .sovm-cards-wrapper .sovm-cards {
+  width: 100%;
+  margin: 0;             
 }
-@media (width >= 900px) {
-    .cards-grid-style .sovm-cards-wrapper {
-        padding: 0;
-    }
+
+main > .section.cards-grid-style > div {
+  max-width: none;
+  padding: 0;
+}
+
+
+/* @media (max-width: 1200px) {
+  .section.cards-grid-style {
+    justify-content: center;
   }
+} */
+
+@media (max-width: 768px) {
+  .section.cards-grid-style .sovm-cards-wrapper {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/*END of Section style - Cards Grid */
