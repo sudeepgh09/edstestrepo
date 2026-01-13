@@ -16,7 +16,7 @@
       "cards",
       "columns",
       "fragment",
-      "sovm-cards"
+      "sovmcards"
     ]
   },
   {
@@ -41,9 +41,9 @@
     ]
   },
   {
-    "id": "sovm-cards",
+    "id": "sovmcards",
     "components": [
-      "sovm-card"
+      "sovmcard"
     ]
   }
 ]
