@@ -1,7 +1,7 @@
 {
   "definitions": [
     {
-      "title": "sovm-cards",
+      "title": "Sovm Cards",
       "id": "sovm-cards",
       "plugins": {
         "xwalk": {
@@ -16,14 +16,14 @@
       }
     },
     {
-      "title": "sovm-card",
+      "title": "Sovm Cards Item",
       "id": "sovm-card",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "sovm-card",
+              "name": "Sovm Cards Item",
               "model": "sovm-card"
             }
           }
