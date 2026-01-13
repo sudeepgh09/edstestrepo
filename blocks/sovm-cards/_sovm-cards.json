@@ -29,6 +29,21 @@
           }
         }
       }
+    },
+    {
+      "title": "Sovm Button Item",
+      "id": "sovmbutton",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Sovm Button Item",
+              "model": "sovmbutton"
+            }
+          }
+        }
+      }
     }
   ],
   "models": [
@@ -86,13 +101,41 @@
           ]
         }
       ]
+    },
+     {
+      "id": "sovmbutton",
+      "fields": [
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Link"
+        },
+        {
+          "component": "text",
+          "name": "linkText",
+          "label": "Link Text",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "svg_path",
+          "label": "Svg Path",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "svg_text",
+          "label": "Svg Icon Name",
+          "valueType": "string"
+        }
+      ]
     }
   ],
   "filters": [
     {
       "id": "sovmcards",
       "components": [
-        "sovmcard"
+        "sovmcard", "sovmbutton"
       ]
     }
   ]

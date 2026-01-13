@@ -1,5 +1,5 @@
 /* ========== BASE CARD ========== */
-.sovm-cards {
+.sovmcards {
   border: none;
   border-radius: 16px;
   background: #fff;
@@ -10,14 +10,14 @@
 }
 
 /* ========== IMAGE ========== */
-.sovm-cards-image {
+.sovmcards-image {
   width: 100%;
   overflow: hidden;
   aspect-ratio: 16 / 10;
   position: relative;
 }
 
-.sovm-cards-image::after {
+.sovmcards-image::after {
   content: '';
   position: absolute;
   inset: auto 0 0;
@@ -26,8 +26,8 @@
   pointer-events: none;
 }
 
-.sovm-cards-image img,
-.sovm-cards-image picture img {
+.sovmcards-image img,
+.sovmcards-image picture img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -36,7 +36,7 @@
 }
 
 /* ========== HEADER (BASE) ========== */
-.sovm-cards-header {
+.sovmcards-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,32 +44,32 @@
   gap: 16px;
 }
 
-.sovm-cards-header:first-child {
+.sovmcards-header:first-child {
   padding-top: 24px;
 }
 
 /* ========== HEADER (SIZE – NO PSEUDO) ========== */
-.sovm-cards.card-small .sovm-cards-header {
+.sovmcards.card-small .sovmcards-header {
   padding: 16px 18px 10px;
   gap: 12px;
 }
 
-.sovm-cards.card-large .sovm-cards-header {
+.sovmcards.card-large .sovmcards-header {
   padding: 24px 28px 14px;
   gap: 20px;
 }
 
 /* ========== HEADER (SIZE – :first-child ONLY) ========== */
-.sovm-cards.card-small .sovm-cards-header:first-child {
+.sovmcards.card-small .sovmcards-header:first-child {
   padding-top: 18px;
 }
 
-.sovm-cards.card-large .sovm-cards-header:first-child {
+.sovmcards.card-large .sovmcards-header:first-child {
   padding-top: 28px;
 }
 
 /* ========== TITLE ========== */
-.sovm-cards-title {
+.sovmcards-title {
   margin: 0;
   font-size: 20px;
   font-weight: 700;
@@ -78,58 +78,58 @@
   letter-spacing: -0.02em;
 }
 
-.sovm-cards.card-small .sovm-cards-title {
+.sovmcards.card-small .sovmcards-title {
   font-size: 25px;
 }
 
-.sovm-cards.card-large .sovm-cards-title {
+.sovmcards.card-large .sovmcards-title {
   font-size: 20px;
 }
 
 /* ========== BODY ========== */
-.sovm-cards-body {
+.sovmcards-body {
   padding: 0 24px 24px;
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.sovm-cards.card-small .sovm-cards-body {
+.sovmcards.card-small .sovmcards-body {
   padding: 0 18px 18px;
 }
 
-.sovm-cards.card-large .sovm-cards-body {
+.sovmcards.card-large .sovmcards-body {
   padding: 0 28px 28px;
 }
 
 /* ========== TEXT ========== */
-.sovm-cards-text {
+.sovmcards-text {
   margin-bottom: 20px;
   color: #0c0c0c;
   line-height: 1.6;
   font-size: 15px;
 }
 
-.sovm-cards-text:last-child {
+.sovmcards-text:last-child {
   margin-bottom: 0;
 }
 
-.sovm-cards.card-small .sovm-cards-text {
+.sovmcards.card-small .sovmcards-text {
   font-size: 16px;
 }
 
-.sovm-cards.card-large .sovm-cards-text {
+.sovmcards.card-large .sovmcards-text {
   font-size: 18px;
   line-height: 1.7;
 }
 
 /* ========== BUTTON ========== */
-.sovm-cards-button {
+.sovmcards-button {
   display: inline-flex;
   margin-top: auto;
 }
 
-.sovm-cards-button a {
+.sovmcards-button a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -144,18 +144,18 @@
   transition: all 0.3s ease;
 }
 
-.sovm-cards.card-small .sovm-cards-button a {
+.sovmcards.card-small .sovmcards-button a {
   padding: 10px 18px;
   font-size: 13px;
 }
 
-.sovm-cards.card-large .sovm-cards-button a {
+.sovmcards.card-large .sovmcards-button a {
   padding: 14px 28px;
   font-size: 15px;
 }
 
 /* ========== SIZE CONTAINERS ========== */
-.sovm-cards.card-small {
+.sovmcards.card-small {
   max-width: 460px;
   max-height: 800px;
   border-radius: 18px;
@@ -163,32 +163,32 @@
   border: #fff;
 }
 
-.sovm-cards.card-large {
+.sovmcards.card-large {
   max-width: 450px;
   border-radius: 20px;
   border: #0c0c0c;
 }
 
 /* ========== BUTTON POSITION ========== */
-.sovm-cards.card-button-header .sovm-cards-body .sovm-cards-button {
+.sovmcards.card-button-header .sovmcards-body .sovmcards-button {
   display: none;
 }
 
-.sovm-cards.card-button-body .sovm-cards-header .sovm-cards-button {
+.sovmcards.card-button-body .sovmcards-header .sovmcards-button {
   display: none;
 }
 
 /* ========== RESPONSIVE ========== */
 @media (width <= 768px) {
-  .sovm-cards {
+  .sovmcards {
     max-width: 100%;
   }
 
-  .sovm-cards-header {
+  .sovmcards-header {
     flex-wrap: wrap;
   }
 
-  .sovm-cards-button a {
+  .sovmcards-button a {
     width: 100%;
   }
 }
@@ -202,7 +202,7 @@
 }
 
 /* Each card wrapper */
-.section.cards-grid-style .sovm-cards-wrapper {
+.section.cards-grid-style .sovmcards-wrapper {
   flex: 0 0 373px; 
   max-width: 373px;
   display: flex;
@@ -211,7 +211,7 @@
 }
 
 /* Card itself */
-.section.cards-grid-style .sovm-cards-wrapper .sovm-cards {
+.section.cards-grid-style .sovmcards-wrapper .sovmcards {
   width: 100%;
   margin: 0;             
 }
@@ -229,7 +229,7 @@ main > .section.cards-grid-style > div {
 } */
 
 @media (max-width: 768px) {
-  .section.cards-grid-style .sovm-cards-wrapper {
+  .section.cards-grid-style .sovmcards-wrapper {
     flex: 0 0 100%;
     max-width: 100%;
   }

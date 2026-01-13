@@ -277,5 +277,33 @@
         ]
       }
     ]
+  },
+  {
+    "id": "sovmbutton",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      },
+      {
+        "component": "text",
+        "name": "linkText",
+        "label": "Link Text",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "svg_path",
+        "label": "Svg Path",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "svg_text",
+        "label": "Svg Icon Name",
+        "valueType": "string"
+      }
+    ]
   }
 ]

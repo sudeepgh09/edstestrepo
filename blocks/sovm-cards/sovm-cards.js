@@ -52,7 +52,7 @@ export default function decorate(block) {
 
   /* ---------- CARD ---------- */
   const card = document.createElement('div');
-  card.classList.add('sovm-cards');
+  card.classList.add('sovmcards');
 
   // Apply configuration classes
   if (size) card.classList.add(size);
@@ -61,18 +61,18 @@ export default function decorate(block) {
   /* ---------- IMAGE (at top if exists) ---------- */
   if (imageElement) {
     const imageWrap = document.createElement('div');
-    imageWrap.className = 'sovm-cards-image';
+    imageWrap.className = 'sovmcards-image';
     imageWrap.append(imageElement.cloneNode(true));
     card.append(imageWrap);
   }
 
   /* ---------- HEADER ---------- */
   const header = document.createElement('div');
-  header.className = 'sovm-cards-header';
+  header.className = 'sovmcards-header';
 
   if (titleText) {
     const h2 = document.createElement('h2');
-    h2.className = 'sovm-cards-title';
+    h2.className = 'sovmcards-title';
     h2.textContent = titleText;
     header.append(h2);
   }
@@ -80,7 +80,7 @@ export default function decorate(block) {
   // Button in header
   if (style === 'card-button-header' && buttonLink) {
     const btnWrap = document.createElement('div');
-    btnWrap.className = 'sovm-cards-button';
+    btnWrap.className = 'sovmcards-button';
     btnWrap.append(buttonLink.cloneNode(true));
     header.append(btnWrap);
   }
@@ -93,18 +93,18 @@ export default function decorate(block) {
 
   if (hasDescription || hasBodyButton) {
     const body = document.createElement('div');
-    body.className = 'sovm-cards-body';
+    body.className = 'sovmcards-body';
 
     if (hasDescription) {
       const text = document.createElement('div');
-      text.className = 'sovm-cards-text';
+      text.className = 'sovmcards-text';
       text.innerHTML = descriptionHtml;
       body.append(text);
     }
 
     if (hasBodyButton) {
       const btnWrap = document.createElement('div');
-      btnWrap.className = 'sovm-cards-button';
+      btnWrap.className = 'sovmcards-button';
       btnWrap.append(buttonLink.cloneNode(true));
       body.append(btnWrap);
     }
