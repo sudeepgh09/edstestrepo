@@ -224,28 +224,21 @@
     ]
   },
   {
-    "id": "sovm-card",
+    "id": "sovm-card-container",
     "fields": [
       {
-        "component": "select",
-        "name": "size",
-        "label": "Background",
+        "component": "reference",
         "valueType": "string",
-        "options": [
-          {
-            "name": "White",
-            "value": "card-white"
-          },
-          {
-            "name": "Dark",
-            "value": "card-dark"
-          }
-        ]
+        "name": "image",
+        "label": "Image",
+        "multi": false
       },
       {
-        "component": "reference",
-        "name": "button-icon",
-        "label": "Button Icon"
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
       }
     ]
   }
