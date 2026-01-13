@@ -41,12 +41,12 @@
     ]
   },
   {
-    "id": "sovm-card",
+    "id": "sovm-cards",
     "components": [
-      "Title",
-      "Text",
-      "Image",
-      "Button"
+      "sovm-card",
+      "title",
+      "button",
+      "image"
     ]
   }
 ]

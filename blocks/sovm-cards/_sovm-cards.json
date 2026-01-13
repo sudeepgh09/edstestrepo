@@ -1,16 +1,30 @@
 {
   "definitions": [
     {
-      "title": "sovm-card",
-      "id": "sovm-card",
+      "title": "Cards",
+      "id": "sovm-cards",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "name": "sovm-card",
-              "model": "sovm-card",
-              "filters": "sovm-card"
+              "name": "Cards",
+              "filter": "sovm-cards"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Sovm Card Container",
+      "id": "sovm-card-container",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Sovm Card Container",
+              "model": "sovm-card-container"
             }
           }
         }
@@ -19,36 +33,31 @@
   ],
   "models": [
     {
-      "id": "sovm-card",
+      "id": "sovm-card-container",
       "fields": [
         {
-          "component": "select",
-          "name": "size",
-          "label": "Background",
+          "component": "reference",
           "valueType": "string",
-          "options": [
-            {
-              "name": "White",
-              "value": "card-white"
-            },
-            {
-              "name": "Dark",
-              "value": "card-dark"
-            }
-          ]
+          "name": "image",
+          "label": "Image",
+          "multi": false
         },
         {
-            "component": "reference",
-            "name": "button-icon",
-            "label": "Button Icon"
+          "component": "richtext",
+          "name": "text",
+          "value": "",
+          "label": "Text",
+          "valueType": "string"
         }
       ]
     }
   ],
   "filters": [
     {
-      "id": "sovm-card",
-      "components": ["Title", "Text", "Image", "Button"]
+      "id": "sovm-cards",
+      "components": [
+        "sovm-card","title","button","image"
+      ]
     }
   ]
 }
