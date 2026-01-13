@@ -56,7 +56,7 @@
     {
       "id": "sovm-cards",
       "components": [
-        "sovm-card","title","image"
+        "sovm-card"
       ]
     }
   ]
