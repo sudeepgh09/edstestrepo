@@ -192,3 +192,47 @@
     width: 100%;
   }
 }
+/*Start of Section style - Cards Grid */
+.section.cards-grid-style {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  gap: 36px 32px; 
+  margin-top: 120px;
+}
+
+/* Each card wrapper */
+.section.cards-grid-style .sovm-cards-wrapper {
+  flex: 0 0 373px; 
+  max-width: 373px;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+/* Card itself */
+.section.cards-grid-style .sovm-cards-wrapper .sovm-cards {
+  width: 100%;
+  margin: 0;             
+}
+
+main > .section.cards-grid-style > div {
+  max-width: none;
+  padding: 0;
+}
+
+
+/* @media (max-width: 1200px) {
+  .section.cards-grid-style {
+    justify-content: center;
+  }
+} */
+
+@media (max-width: 768px) {
+  .section.cards-grid-style .sovm-cards-wrapper {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/*END of Section style - Cards Grid */
