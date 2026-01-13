@@ -275,12 +275,7 @@
             "value": "card-button-header"
           }
         ]
-      }
-    ]
-  },
-  {
-    "id": "sovmbutton",
-    "fields": [
+      },
       {
         "component": "aem-content",
         "name": "svg_path",

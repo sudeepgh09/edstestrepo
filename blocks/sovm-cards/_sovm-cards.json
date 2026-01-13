@@ -29,21 +29,6 @@
           }
         }
       }
-    },
-    {
-      "title": "Sovm Button Item",
-      "id": "sovmbutton",
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
-            "template": {
-              "name": "Sovm Button Item",
-              "model": "sovmbutton"
-            }
-          }
-        }
-      }
     }
   ],
   "models": [
@@ -99,12 +84,7 @@
               "value": "card-button-header"
             }
           ]
-        }
-      ]
-    },
-     {
-      "id": "sovmbutton",
-      "fields": [
+        },
         {
           "component": "aem-content",
           "name": "svg_path",
@@ -124,7 +104,7 @@
     {
       "id": "sovmcards",
       "components": [
-        "sovmcard", "sovmbutton"
+        "sovmcard"
       ]
     }
   ]
