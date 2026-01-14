@@ -4,16 +4,26 @@ import { loadFragment } from '../fragment/fragment.js';
 // media query match that indicates desktop width
 const isDesktop = window.matchMedia('(min-width: 768px)');
 
+function toggleAllNavSections(sections, expanded = false) {
+  sections
+    .querySelectorAll('.nav-sections .default-content-wrapper > ul > li')
+    .forEach((section) => {
+      section.setAttribute('aria-expanded', expanded);
+    });
+}
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
     const navSections = nav.querySelector('.nav-sections');
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
+    const navSectionExpanded = navSections.querySelector(
+      '[aria-expanded="true"]',
+    );
 
     if (navSectionExpanded && isDesktop.matches) {
       toggleAllNavSections(navSections);
       navSectionExpanded.focus();
     } else if (!isDesktop.matches) {
+      // eslint-disable-next-line no-use-before-define
       toggleMenu(nav, navSections);
       nav.querySelector('button').focus();
     }
@@ -24,11 +34,14 @@ function closeOnFocusLost(e) {
   const nav = e.currentTarget;
   if (!nav.contains(e.relatedTarget)) {
     const navSections = nav.querySelector('.nav-sections');
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
+    const navSectionExpanded = navSections.querySelector(
+      '[aria-expanded="true"]',
+    );
 
     if (navSectionExpanded && isDesktop.matches) {
       toggleAllNavSections(navSections, false);
     } else if (!isDesktop.matches) {
+      // eslint-disable-next-line no-use-before-define
       toggleMenu(nav, navSections, false);
     }
   }
@@ -50,18 +63,8 @@ function focusNavSection() {
   document.activeElement.addEventListener('keydown', openOnKeydown);
 }
 
-function toggleAllNavSections(sections, expanded = false) {
-  sections
-    .querySelectorAll('.nav-sections .default-content-wrapper > ul > li')
-    .forEach((section) => {
-      section.setAttribute('aria-expanded', expanded);
-    });
-}
-
 function toggleMenu(nav, navSections, forceExpanded = null) {
-  const expanded = forceExpanded !== null
-    ? !forceExpanded
-    : nav.getAttribute('aria-expanded') === 'true';
+  const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
 
   const header = nav.closest('header');
   header?.classList.toggle('nav-open', !expanded && !isDesktop.matches);
@@ -112,9 +115,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  */
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
-  const navPath = navMeta
-    ? new URL(navMeta, window.location).pathname
-    : '/nav';
+  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
 
   const fragment = await loadFragment(navPath);
   if (!fragment) return;
@@ -139,7 +140,9 @@ export default async function decorate(block) {
   const brandLink = navBrand?.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
-    brandLink.closest('.button-container')?.classList.remove('button-container');
+    brandLink
+      .closest('.button-container')
+      ?.classList.remove('button-container');
   }
 
   const navSections = nav.querySelector('.nav-sections');
@@ -155,7 +158,10 @@ export default async function decorate(block) {
           if (isDesktop.matches) {
             const expanded = navSection.getAttribute('aria-expanded') === 'true';
             toggleAllNavSections(navSections);
-            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            navSection.setAttribute(
+              'aria-expanded',
+              expanded ? 'false' : 'true',
+            );
           }
         });
       });
