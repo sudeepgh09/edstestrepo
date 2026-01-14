@@ -167,7 +167,7 @@
                 "template": {
                   "name": "sovmcards",
                   "model": "sovmcards",
-                  "filters": "sovmcards"
+                  "filter": "sovmcards"
                 }
               }
             }
