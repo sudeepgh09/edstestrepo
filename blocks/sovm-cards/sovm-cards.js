@@ -1,13 +1,23 @@
 /* global svgxuse */
 
 export default function decorate(block) {
+  /* ---------------- AUTHORING SAFETY ---------------- */
+  const isAuthoring =
+    document.body.classList.contains('ue-authoring') ||
+    document.body.hasAttribute('data-ue-authoring');
+
+  if (isAuthoring) {
+    return;
+  }
+
+  /* ---------------- BLOCK MODIFIERS ---------------- */
   const isGrid3 = block.classList.contains('grid-3');
   const isWhite = block.classList.contains('card-white');
   const isDark = block.classList.contains('card-darkgrey');
 
   const items = [...block.children];
-  block.innerHTML = '';
 
+  /* DO NOT nuke block before extracting content */
   const wrapper = document.createElement('div');
   wrapper.className = 'sovm-cards-wrapper';
 
@@ -21,35 +31,36 @@ export default function decorate(block) {
     const paragraphs = [...item.querySelectorAll('p')];
     const link = item.querySelector('a');
 
-    const svgPath = item.querySelector('[data-svgpath]')?.dataset.svgpath
-      || item.querySelector('.svgpath')?.textContent?.trim();
-    const svgIcon = item.querySelector('[data-svgtext]')?.dataset.svgtext
-      || item.querySelector('.svgtext')?.textContent?.trim();
+    const svgPath =
+      item.querySelector('[data-svgpath]')?.dataset.svgpath ||
+      item.querySelector('.svgpath')?.textContent?.trim();
+
+    const svgIcon =
+      item.querySelector('[data-svgtext]')?.dataset.svgtext ||
+      item.querySelector('.svgtext')?.textContent?.trim();
 
     const hasImage = !!picture;
 
     const card = document.createElement('article');
     card.className = 'sovm-card';
 
-    if (!hasImage) {
-      card.classList.add('no-image');
-    }
+    if (!hasImage) card.classList.add('no-image');
 
-    /* ---------- IMAGE ---------- */
+    /* IMAGE */
     if (hasImage) {
       const imgWrap = document.createElement('div');
       imgWrap.className = 'sovm-card-image';
-      imgWrap.append(picture);
+      imgWrap.append(picture.cloneNode(true));
       card.append(imgWrap);
     }
 
-    /* ---------- CONTENT ---------- */
+    /* CONTENT */
     const content = document.createElement('div');
     content.className = 'sovm-card-content';
 
     if (title) {
       const h3 = document.createElement('h3');
-      h3.textContent = title.textContent;
+      h3.textContent = title.textContent.trim();
       content.append(h3);
     }
 
@@ -59,31 +70,22 @@ export default function decorate(block) {
       content.append(desc);
     }
 
-//     if (paragraphs.length > 0) {
-//   const desc = document.createElement('p');
-//   desc.innerHTML = paragraphs[0].innerHTML;
-//   content.append(desc);
-// }
-
-
-    console.log({
-  isGrid3,
-  hasImage,
-  paragraphs: paragraphs.length,
-});
-
-    /* ---------- BUTTON ---------- */
+    /* BUTTON */
     if (link) {
       const btn = document.createElement('a');
       btn.href = link.href;
       btn.className = 'sovm-btn';
-      btn.textContent = link.textContent;
+      btn.textContent = link.textContent.trim();
 
       if (svgPath && svgIcon) {
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.classList.add('sovm-btn-icon');
 
-        const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+        const use = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'use'
+        );
+
         use.setAttributeNS(
           'http://www.w3.org/1999/xlink',
           'href',
@@ -101,13 +103,14 @@ export default function decorate(block) {
     wrapper.append(card);
   });
 
-  /* ---------- BACKGROUND MODIFIERS ---------- */
+  /* BACKGROUND */
   if (isWhite) wrapper.classList.add('card-white');
   if (isDark) wrapper.classList.add('card-darkgrey');
 
-  block.append(wrapper);
+  /* FINAL RENDER (SAFE) */
+  block.replaceChildren(wrapper);
 
-  /* Ensure svgxuse runs */
+  /* SVG POLYFILL */
   if (window.svgxuse) {
     window.svgxuse();
   }
