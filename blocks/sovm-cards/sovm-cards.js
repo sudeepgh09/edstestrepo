@@ -53,11 +53,24 @@ export default function decorate(block) {
       content.append(h3);
     }
 
-    if (paragraphs.length > 0 && (isGrid3 || hasImage)) {
-      const desc = document.createElement('p');
-      desc.innerHTML = paragraphs[0].innerHTML;
-      content.append(desc);
-    }
+    // if (paragraphs.length > 0 && (isGrid3 || hasImage)) {
+    //   const desc = document.createElement('p');
+    //   desc.innerHTML = paragraphs[0].innerHTML;
+    //   content.append(desc);
+    // }
+
+    if (paragraphs.length > 0) {
+  const desc = document.createElement('p');
+  desc.innerHTML = paragraphs[0].innerHTML;
+  content.append(desc);
+}
+
+
+    console.log({
+  isGrid3,
+  hasImage,
+  paragraphs: paragraphs.length,
+});
 
     /* ---------- BUTTON ---------- */
     if (link) {
