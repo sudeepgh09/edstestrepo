@@ -41,9 +41,9 @@
     ]
   },
   {
-    "id": "sovmcards",
+    "id": "sovm-cards",
     "components": [
-      "sovmcard"
+      "sovm-card"
     ]
   }
 ]
