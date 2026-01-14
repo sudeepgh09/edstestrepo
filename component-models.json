@@ -233,12 +233,32 @@
         "valueType": "string",
         "options": [
           {
-            "name": "2 Columns",
-            "value": "grid-2"
+            "name": "3 - Columns",
+            "value": "grid-3"
           },
           {
-            "name": "3 Columns",
-            "value": "grid-3"
+            "name": "Normal Card with Border",
+            "value": "card-with-border"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "card-backgound",
+        "label": "Card Background",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "White",
+            "value": "card-white"
+          },
+          {
+            "name": "Dark Grey",
+            "value": "card-darkgrey"
+          },
+          {
+            "name": "50-50 Image & Text",
+            "value": "image-text"
           }
         ]
       }
@@ -278,22 +298,6 @@
         "name": "svgtext",
         "label": "Svg Icon Name",
         "valueType": "string"
-      },
-      {
-        "component": "select",
-        "name": "cardbackgound",
-        "label": "Card Background",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "White",
-            "value": "card-white"
-          },
-          {
-            "name": "Dark Grey",
-            "value": "card-darkgrey"
-          }
-        ]
       }
     ]
   }
