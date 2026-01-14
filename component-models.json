@@ -228,37 +228,70 @@
     "fields": [
       {
         "component": "select",
-        "name": "size",
-        "label": "Card Size",
+        "name": "grid",
+        "label": "Grid Layout",
         "valueType": "string",
         "options": [
           {
-            "name": "Small",
-            "value": "card-small"
+            "name": "2 Columns",
+            "value": "grid-2"
           },
           {
-            "name": "Large",
-            "value": "card-large"
+            "name": "3 Columns",
+            "value": "grid-3"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "sovm-card",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Card Image"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Card Title"
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "label": "Card Description"
+      },
+      {
+        "component": "text",
+        "name": "ctatext",
+        "label": "Button Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "svgpath",
+        "label": "Svg Path",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "svgtext",
+        "label": "Svg Icon Name",
+        "valueType": "string"
       },
       {
         "component": "select",
-        "name": "style",
-        "label": "Button Style",
+        "name": "cardbackgound",
+        "label": "Card Background",
         "valueType": "string",
         "options": [
-          {
-            "name": "Button in Card",
-            "value": "card-button-body"
-          },
           {
             "name": "White",
             "value": "card-white"
           },
           {
-            "name": "Grey",
-            "value": "card-grey"
+            "name": "Dark Grey",
+            "value": "card-darkgrey"
           }
         ]
       }

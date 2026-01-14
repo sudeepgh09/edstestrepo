@@ -43,10 +43,7 @@
   {
     "id": "sovm-cards",
     "components": [
-      "image",
-      "title",
-      "button",
-      "text"
+      "sovm-card"
     ]
   }
 ]
