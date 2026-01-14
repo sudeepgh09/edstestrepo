@@ -15,6 +15,21 @@
           }
         }
       }
+    },
+    {
+      "title": "Sovm Card Item",
+      "id": "sovmcard",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Sovm Card Item",
+              "model": "sovmcard"
+            }
+          }
+        }
+      }
     }
   ],
 
