@@ -150,21 +150,70 @@
     ]
   },
   {
-    "id": "card",
+    "id": "sovm-cards",
+    "fields": [
+      {
+        "component": "select",
+        "name": "grid",
+        "label": "Grid Layout",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "3 - Columns",
+            "value": "grid-3"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "card-background",
+        "label": "Card Background",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "White",
+            "value": "card-white"
+          },
+          {
+            "name": "Dark Grey",
+            "value": "card-darkgrey"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sovm-card",
     "fields": [
       {
         "component": "reference",
-        "valueType": "string",
         "name": "image",
-        "label": "Image",
-        "multi": false
+        "label": "Card Image"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Card Title"
       },
       {
         "component": "richtext",
         "name": "text",
-        "value": "",
-        "label": "Text",
-        "valueType": "string"
+        "label": "Card Description"
+      },
+      {
+        "component": "text",
+        "name": "ctatext",
+        "label": "Button Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "svgpath",
+        "label": "Svg Path"
+      },
+      {
+        "component": "text",
+        "name": "svgtext",
+        "label": "Svg Icon Name"
       }
     ]
   },

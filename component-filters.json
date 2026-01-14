@@ -16,13 +16,13 @@
       "cards",
       "columns",
       "fragment",
-      "sovm-cards"
+      "sovmcards"
     ]
   },
   {
-    "id": "cards",
+    "id": "sovm-cards",
     "components": [
-      "card"
+      "sovm-card"
     ]
   },
   {
