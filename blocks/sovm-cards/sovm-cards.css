@@ -1,22 +1,112 @@
+/* =========================
+   BASE
+========================= */
+
 .sovm-cards-wrapper {
-  width: 475px;
-  padding: 48px 36px 48px 48px;
+  width: 100%;
   border-radius: 14px;
+  padding: 48px 36px;
 }
-.sovm-cards-wrapper.card-with-border {
+
+.card-white {
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid #000;
 }
-.sovm-cards-wrapper.card-white {
-  background: rgba(255, 255, 255, 0.5);
-  color: #000;
-  backdrop-filter: blur(12px);
-}
-.sovm-cards-wrapper.card-darkgrey {
-  background: #2b2b2b;
+
+.card-darkgrey {
+  background: #1e1e1e;
   color: #fff;
 }
 
-.sovm-cards-wrapper.card-darkgrey h3,
-.sovm-cards-wrapper.card-darkgrey p {
-  color: #fff;
+/* =========================
+   GRID MODE
+========================= */
+
+.sovm-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.sovm-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.sovm-card.no-image {
+  justify-content: center;
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.sovm-card-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px 16px 0 0;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.sovm-card-content {
+  padding: 32px;
+}
+
+.sovm-card-content h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.sovm-card-content p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.sovm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-radius: 999px;
+  background: #4dffb3;
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sovm-btn:hover {
+  opacity: 0.9;
+}
+
+/* =========================
+   SVG ICON
+========================= */
+
+.sovm-btn-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* =========================
+   NON-GRID SIMPLE CARD
+========================= */
+
+.sovm-cards-wrapper:not(.sovm-cards-grid) .sovm-card {
+  max-width: 475px;
 }
