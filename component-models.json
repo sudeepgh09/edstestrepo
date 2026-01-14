@@ -150,7 +150,7 @@
     ]
   },
   {
-    "id": "sovmcards",
+    "id": "sovm-cards",
     "fields": [
       {
         "component": "select",
@@ -183,7 +183,7 @@
     ]
   },
   {
-    "id": "sovmcard",
+    "id": "sovm-card",
     "fields": [
       {
         "component": "reference",
@@ -273,7 +273,7 @@
     ]
   },
   {
-    "id": "sovmcards",
+    "id": "sovm-cards",
     "fields": [
       {
         "component": "select",
@@ -306,7 +306,7 @@
     ]
   },
   {
-    "id": "sovmcard",
+    "id": "sovm-card",
     "fields": [
       {
         "component": "reference",

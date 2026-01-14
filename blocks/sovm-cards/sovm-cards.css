@@ -2,7 +2,7 @@
    BASE
 ========================= */
 
-.sovmcards-wrapper {
+.sovm-cards-wrapper {
   width: 100%;
   border-radius: 14px;
   padding: 48px 36px;
@@ -22,7 +22,7 @@
    GRID MODE
 ========================= */
 
-.sovmcards-grid {
+.sovm-cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
@@ -32,14 +32,14 @@
    CARD
 ========================= */
 
-.sovmcard {
+.sovm-card {
   display: flex;
   flex-direction: column;
   border-radius: 16px;
   overflow: hidden;
 }
 
-.sovmcard.no-image {
+.sovm-card.no-image {
   justify-content: center;
 }
 
@@ -47,7 +47,7 @@
    IMAGE
 ========================= */
 
-.sovmcard-image img {
+.sovm-card-image img {
   width: 100%;
   height: auto;
   display: block;
@@ -58,16 +58,16 @@
    CONTENT
 ========================= */
 
-.sovmcard-content {
+.sovm-card-content {
   padding: 32px;
 }
 
-.sovmcard-content h3 {
+.sovm-card-content h3 {
   font-size: 24px;
   margin-bottom: 12px;
 }
 
-.sovmcard-content p {
+.sovm-card-content p {
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 24px;
@@ -107,6 +107,6 @@
    NON-GRID SIMPLE CARD
 ========================= */
 
-.sovmcards-wrapper:not(.sovmcards-grid) .sovmcard {
+.sovm-cards-wrapper:not(.sovm-cards-grid) .sovm-card {
   max-width: 475px;
 }

@@ -9,10 +9,10 @@ export default function decorate(block) {
   block.innerHTML = '';
 
   const wrapper = document.createElement('div');
-  wrapper.className = 'sovmcards-wrapper';
+  wrapper.className = 'sovm-cards-wrapper';
 
   if (isGrid3) {
-    wrapper.classList.add('sovmcards-grid');
+    wrapper.classList.add('sovm-cards-grid');
   }
 
   items.forEach((item) => {
@@ -29,7 +29,7 @@ export default function decorate(block) {
     const hasImage = !!picture;
 
     const card = document.createElement('article');
-    card.className = 'sovmcard';
+    card.className = 'sovm-card';
 
     if (!hasImage) {
       card.classList.add('no-image');
@@ -38,14 +38,14 @@ export default function decorate(block) {
     /* ---------- IMAGE ---------- */
     if (hasImage) {
       const imgWrap = document.createElement('div');
-      imgWrap.className = 'sovmcard-image';
+      imgWrap.className = 'sovm-card-image';
       imgWrap.append(picture);
       card.append(imgWrap);
     }
 
     /* ---------- CONTENT ---------- */
     const content = document.createElement('div');
-    content.className = 'sovmcard-content';
+    content.className = 'sovm-card-content';
 
     if (title) {
       const h3 = document.createElement('h3');
