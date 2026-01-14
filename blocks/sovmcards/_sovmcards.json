@@ -45,10 +45,6 @@
             {
               "name": "3 - Columns",
               "value": "grid-3"
-            },
-            {
-              "name": "Normal Card with Border",
-              "value": "card-with-border"
             }
           ]
         },
@@ -65,10 +61,6 @@
             {
               "name": "Dark Grey",
               "value": "card-darkgrey"
-            },
-            {
-              "name": "50-50 Image & Text",
-              "value": "image-text"
             }
           ]
         }

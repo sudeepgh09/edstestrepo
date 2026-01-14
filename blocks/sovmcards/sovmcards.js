@@ -9,10 +9,10 @@ export default function decorate(block) {
   block.innerHTML = '';
 
   const wrapper = document.createElement('div');
-  wrapper.className = 'sovm-cards-wrapper';
+  wrapper.className = 'sovmcards-wrapper';
 
   if (isGrid3) {
-    wrapper.classList.add('sovm-cards-grid');
+    wrapper.classList.add('sovmcards-grid');
   }
 
   items.forEach((item) => {
@@ -29,7 +29,7 @@ export default function decorate(block) {
     const hasImage = !!picture;
 
     const card = document.createElement('article');
-    card.className = 'sovm-card';
+    card.className = 'sovmcard';
 
     if (!hasImage) {
       card.classList.add('no-image');
@@ -38,14 +38,14 @@ export default function decorate(block) {
     /* ---------- IMAGE ---------- */
     if (hasImage) {
       const imgWrap = document.createElement('div');
-      imgWrap.className = 'sovm-card-image';
+      imgWrap.className = 'sovmcard-image';
       imgWrap.append(picture);
       card.append(imgWrap);
     }
 
     /* ---------- CONTENT ---------- */
     const content = document.createElement('div');
-    content.className = 'sovm-card-content';
+    content.className = 'sovmcard-content';
 
     if (title) {
       const h3 = document.createElement('h3');
@@ -53,17 +53,17 @@ export default function decorate(block) {
       content.append(h3);
     }
 
-    // if (paragraphs.length > 0 && (isGrid3 || hasImage)) {
-    //   const desc = document.createElement('p');
-    //   desc.innerHTML = paragraphs[0].innerHTML;
-    //   content.append(desc);
-    // }
+    if (paragraphs.length > 0 && (isGrid3 || hasImage)) {
+      const desc = document.createElement('p');
+      desc.innerHTML = paragraphs[0].innerHTML;
+      content.append(desc);
+    }
 
-    if (paragraphs.length > 0) {
-  const desc = document.createElement('p');
-  desc.innerHTML = paragraphs[0].innerHTML;
-  content.append(desc);
-}
+//     if (paragraphs.length > 0) {
+//   const desc = document.createElement('p');
+//   desc.innerHTML = paragraphs[0].innerHTML;
+//   content.append(desc);
+// }
 
 
     console.log({
