@@ -24,7 +24,7 @@
           "page": {
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
-              "name": "Sovm Card Item",
+              "name": "sovm-card",
               "model": "sovm-card"
             }
           }
