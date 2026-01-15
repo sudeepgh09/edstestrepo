@@ -250,7 +250,7 @@
       },
       {
         "component": "select",
-        "name": "card-backgound",
+        "name": "card-background",
         "label": "Card Background",
         "valueType": "string",
         "options": [
