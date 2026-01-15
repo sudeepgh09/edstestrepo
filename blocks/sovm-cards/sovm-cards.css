@@ -1,112 +1,96 @@
-/* =========================
-   BASE
-========================= */
+/* ---------- OUTER WRAPPER ---------- */
 
 .sovm-cards-wrapper {
-  width: 100%;
+  padding: 48px 36px 48px 48px;
   border-radius: 14px;
-  padding: 48px 36px;
+  width: 475px;
+  min-height: 370px;
+  box-sizing: border-box;
 }
 
-.card-white {
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid #000;
-}
-
-.card-darkgrey {
-  background: #1e1e1e;
-  color: #fff;
-}
-
-/* =========================
-   GRID MODE
-========================= */
-
-.sovm-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
-
-/* =========================
-   CARD
-========================= */
+/* ---------- CARD BASE ---------- */
 
 .sovm-card {
   display: flex;
   flex-direction: column;
-  border-radius: 16px;
+  border-radius: 12px;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
-.sovm-card.no-image {
-  justify-content: center;
+/* ---------- IMAGE PRESENT CASE ---------- */
+
+.sovm-card.has-image {
+  flex-direction: column;     /* STACKED MODE */
 }
 
-/* =========================
-   IMAGE
-========================= */
-
-.sovm-card-image img {
+.sovm-card.has-image .sovm-card-image {
   width: 100%;
-  height: auto;
+}
+
+.sovm-card.has-image .sovm-card-image img {
+  width: 100%;
   display: block;
-  border-radius: 16px 16px 0 0;
+  object-fit: cover;
 }
 
-/* =========================
-   CONTENT
-========================= */
-
-.sovm-card-content {
-  padding: 32px;
+.sovm-card.has-image .sovm-card-content {
+  width: 100%;
+  margin-top: 16px;
 }
 
-.sovm-card-content h3 {
-  font-size: 24px;
-  margin-bottom: 12px;
+/* ---------- NO IMAGE CASE ---------- */
+
+.sovm-card.no-image .sovm-card-image{
+  display: none;
 }
 
-.sovm-card-content p {
-  font-size: 16px;
-  line-height: 1.5;
-  margin-bottom: 24px;
+.sovm-card.no-image .sovm-card-content {
+  width: 100%;
 }
 
-/* =========================
-   BUTTON
-========================= */
+/* ---------- BACKGROUND STYLES ---------- */
+
+.sovm-cards-wrapper.card-white {
+  background: rgba(255,255,255,0.5);
+  border: 1px solid #fff;
+  color: #000;
+}
+
+.sovm-cards-wrapper.card-darkgrey {
+  background: #2a2a2a;
+  color: white;
+}
+
+/* ---------- BUTTON ---------- */
 
 .sovm-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 20px;
-  border-radius: 999px;
-  background: #4dffb3;
-  color: #000;
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 14px;
+  border: 1px solid #000;
   text-decoration: none;
-  font-weight: 600;
+  margin-top: 10px;
+  font-size: 16px;
 }
 
-.sovm-btn:hover {
-  opacity: 0.9;
+.card-darkgrey .sovm-btn {
+  border-color: #fff;
+  color: #fff;
 }
 
-/* =========================
-   SVG ICON
-========================= */
+/* ---------- TYPOGRAPHY ---------- */
 
-.sovm-btn-icon {
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
+.sovm-cards-wrapper .sovm-card-content h3 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 22px;
+  line-height: 40px;
 }
 
-/* =========================
-   NON-GRID SIMPLE CARD
-========================= */
-
-.sovm-cards-wrapper:not(.sovm-cards-grid) .sovm-card {
-  max-width: 475px;
+.sovm-cards-wrapper .sovm-card-content p {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 26px;
 }
