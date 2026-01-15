@@ -237,17 +237,6 @@
             "value": "grid-3"
           }
         ]
-      }
-    ]
-  },
-  {
-    "id": "sovm-card",
-    "fields": [
-      {
-        "component": "reference",
-        "name": "image",
-        "label": "Card Image",
-        "valueType": "string"
       },
       {
         "component": "select",
@@ -264,6 +253,17 @@
             "value": "card-darkgrey"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "sovm-card",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Card Image",
+        "valueType": "string"
       },
       {
         "component": "text",
