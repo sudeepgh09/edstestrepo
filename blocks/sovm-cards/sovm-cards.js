@@ -64,3 +64,4 @@ export default function decorate(block) {
   wrapper.append(card);
   block.append(wrapper);
 }
+console.log("YEah!");
