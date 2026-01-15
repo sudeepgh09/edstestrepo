@@ -77,3 +77,4 @@ const hasImage =
 
   block.append(wrapper);
 }
+console.log("Yeahhhh!!!");
