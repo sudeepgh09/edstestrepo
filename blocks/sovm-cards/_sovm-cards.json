@@ -56,7 +56,8 @@
         {
           "component": "reference",
           "name": "image",
-          "label": "Card Image"
+          "label": "Card Image",
+          "valueType": "string"
         }
         ,
         {
@@ -91,7 +92,7 @@
           "label": "Button Text"
         },
         {
-          "component": "aem-content",
+          "component": "text",
           "name": "svgpath",
           "label": "Svg Path",
           "valueType": "string"

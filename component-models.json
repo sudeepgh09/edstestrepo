@@ -246,7 +246,8 @@
       {
         "component": "reference",
         "name": "image",
-        "label": "Card Image"
+        "label": "Card Image",
+        "valueType": "string"
       },
       {
         "component": "select",
@@ -280,7 +281,7 @@
         "label": "Button Text"
       },
       {
-        "component": "aem-content",
+        "component": "text",
         "name": "svgpath",
         "label": "Svg Path",
         "valueType": "string"
