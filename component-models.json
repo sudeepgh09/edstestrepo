@@ -226,7 +226,6 @@
         "component": "select",
         "name": "grid",
         "label": "Grid Layout",
-        "valueType": "string",
         "options": [
           {
             "name": "3 Columns",
@@ -238,7 +237,6 @@
         "component": "select",
         "name": "card-background",
         "label": "Card Background",
-        "valueType": "string",
         "options": [
           {
             "name": "White",
@@ -253,8 +251,7 @@
       {
         "component": "reference",
         "name": "image",
-        "label": "Card Image",
-        "valueType": "string"
+        "label": "Card Image"
       },
       {
         "component": "text",
@@ -274,14 +271,12 @@
       {
         "component": "text",
         "name": "svgpath",
-        "label": "SVG Path",
-        "valueType": "string"
+        "label": "Svg Path"
       },
       {
         "component": "text",
         "name": "svgtext",
-        "label": "SVG Icon Name",
-        "valueType": "string"
+        "label": "Svg Icon Name"
       }
     ]
   }

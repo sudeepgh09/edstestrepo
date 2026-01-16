@@ -1,85 +1,76 @@
+function mapRowsToObject(rows) {
+  // eslint-disable-next-line max-len
+  const [
+    grid,
+    background,
+    image,
+    title,
+    text,
+    ctatext,
+    svgpath,
+    svgtext,
+  ] = rows;
+
+  return {
+    grid: grid?.[0] || '',
+    background: background?.[0] || '',
+    image: image?.[0] || '',
+    title: title?.[0] || '',
+    text: text?.[0] || '',
+    ctatext: ctatext?.[0] || '',
+    svgpath: svgpath?.[0] || '',
+    svgtext: svgtext?.[0] || '',
+  };
+}
+
 export default function decorate(block) {
-  console.log('SOVM decorate running');
+  const rows = [...block.children].map((row) => [...row.children].map((c) => c.textContent.trim()));
 
-  // ---------- GET BLOCK PROPERTIES ----------
-  const grid = block.dataset.grid || 'grid-3';
-  const bg = block.dataset.cardBackground || 'card-white';
+  const data = mapRowsToObject(rows);
 
-  // ---------- GET CARD ITEM DATA ----------
-  // Assume each card item is a child of the block
-  const cardItems = [...block.querySelectorAll('.sovm-card-item')];
-  console.log(cardItems);
-
-  // ---------- CLEAR BLOCK CONTENT ----------
   const wrapper = document.createElement('div');
-  wrapper.className = 'sovm-cards-wrapper';
-  wrapper.classList.add(grid, bg);
-  block.innerHTML = '';
-  block.append(wrapper);
+  wrapper.className = `sovm-cards-wrapper ${data.grid} ${data.background}`;
 
-  // ---------- LOOP THROUGH EACH CARD ----------
-  cardItems.forEach((item) => {
-    const imgSrc = item.dataset.image || '';
-    const title = item.dataset.title || '';
-    const text = item.dataset.text || '';
-    const ctaText = item.dataset.ctatext || '';
-    const svgPath = item.dataset.svgpath || '';
-    const svgText = item.dataset.svgtext || '';
+  const card = document.createElement('div');
+  card.className = 'sovm-card';
 
-    const hasImage = imgSrc.trim() !== '';
+  if (data.image) {
+    card.innerHTML += `
+      <div class="sovm-card-image">
+        <img src="${data.image}" alt="${data.title || ''}" />
+      </div>
+    `;
+  }
 
-    // Card container
-    const card = document.createElement('div');
-    card.className = `sovm-card ${hasImage ? 'has-image' : 'no-image'}`;
+  card.innerHTML += '<div class="sovm-card-content">';
 
-    // Image
-    if (hasImage) {
-      const imgWrap = document.createElement('div');
-      imgWrap.className = 'sovm-card-image';
-      const img = document.createElement('img');
-      img.src = imgSrc;
-      img.alt = title;
-      imgWrap.append(img);
-      card.append(imgWrap);
-    }
+  if (data.title) {
+    card.innerHTML += `<h3>${data.title}</h3>`;
+  }
 
-    // Content
-    const content = document.createElement('div');
-    content.className = 'sovm-card-content';
+  if (data.text) {
+    card.innerHTML += `<p>${data.text}</p>`;
+  }
 
-    // Title
-    if (title) {
-      const h3 = document.createElement('h3');
-      h3.textContent = title;
-      content.append(h3);
-    }
+  if (data.ctatext) {
+    card.innerHTML += `
+      <a class="sovm-btn">
+        ${data.ctatext}
+      </a>
+    `;
+  }
 
-    // Description
-    if (text) {
-      const p = document.createElement('p');
-      p.textContent = text;
-      content.append(p);
-    }
+  if (data.svgpath && data.svgtext) {
+    card.innerHTML += `
+      <span class="sovm-icon">
+        <img src="${data.svgpath}" alt="${data.svgtext}" />
+      </span>
+    `;
+  }
 
-    // CTA Button
-    if (ctaText) {
-      const a = document.createElement('a');
-      a.className = 'sovm-btn';
-      a.href = '#';
-      a.textContent = ctaText;
-      content.append(a);
-    }
+  card.innerHTML += '</div>';
 
-    // SVG (optional)
-    if (svgPath && svgText) {
-      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-      use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', `${svgPath}#${svgText}`);
-      svg.appendChild(use);
-      content.append(svg);
-    }
+  wrapper.append(card);
 
-    card.append(content);
-    wrapper.append(card);
-  });
+  block.replaceChildren(wrapper);
 }
