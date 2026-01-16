@@ -33,18 +33,6 @@
             {
               "name": "Highlight",
               "value": "highlight"
-            },
-            {
-              "name": "3 - Columns",
-              "value": "grid-3"
-            },
-            {
-              "name": "White",
-              "value": "card-white"
-            },
-            {
-              "name": "Dark Grey",
-              "value": "card-darkgrey"
             }
           ]
         }

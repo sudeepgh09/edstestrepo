@@ -140,18 +140,6 @@
           {
             "name": "Highlight",
             "value": "highlight"
-          },
-          {
-            "name": "3 - Columns",
-            "value": "grid-3"
-          },
-          {
-            "name": "White",
-            "value": "card-white"
-          },
-          {
-            "name": "Dark Grey",
-            "value": "card-darkgrey"
           }
         ]
       }
@@ -232,8 +220,36 @@
     ]
   },
   {
-    "id": "sovm-card",
+    "id": "sovm-cards",
     "fields": [
+      {
+        "component": "select",
+        "name": "grid",
+        "label": "Grid Layout",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "3 Columns",
+            "value": "grid-3"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "card-background",
+        "label": "Card Background",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "White",
+            "value": "card-white"
+          },
+          {
+            "name": "Dark Grey",
+            "value": "card-darkgrey"
+          }
+        ]
+      },
       {
         "component": "reference",
         "name": "image",
@@ -258,13 +274,13 @@
       {
         "component": "text",
         "name": "svgpath",
-        "label": "Svg Path",
+        "label": "SVG Path",
         "valueType": "string"
       },
       {
         "component": "text",
         "name": "svgtext",
-        "label": "Svg Icon Name",
+        "label": "SVG Icon Name",
         "valueType": "string"
       }
     ]

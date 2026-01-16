@@ -1,69 +1,71 @@
 export default function decorate(block) {
-  const section = block.closest('.section');
-  if (!section) return;
+  console.log('Sovm Cards property-based decorate running');
 
-  // Read section style property
-  const styles = section.dataset.style ? section.dataset.style.split(' ') : [];
-  const gridClass = styles.find((s) => s.startsWith('grid')) || '';
-  const bgClass = styles.find((s) => s.startsWith('card-')) || '';
+  // Read block properties
+  const grid = block.dataset.grid || 'grid-3';
+  const bg = block.dataset['card-background'] || 'card-white';
+  const { image } = block.dataset;
+  const { title } = block.dataset;
+  const { text } = block.dataset;
+  const cta = block.dataset.ctatext;
+  const svgPath = block.dataset.svgpath;
+  const svgText = block.dataset.svgtext;
 
-  // Wrapper
+  // Create wrapper
   const wrapper = document.createElement('div');
-  wrapper.className = 'sovm-cards-wrapper';
-  if (gridClass) wrapper.classList.add(gridClass);
-  if (bgClass) wrapper.classList.add(bgClass);
+  wrapper.className = `sovm-cards-wrapper ${bg} ${grid}`;
 
-  // Loop through card items
-  [...block.children].forEach((item) => {
-    const card = document.createElement('div');
-    card.className = 'sovm-card';
+  // Create card container
+  const card = document.createElement('div');
+  card.className = 'sovm-card';
 
-    // Image
-    const imgRef = item.querySelector('[name="image"] img');
-    if (imgRef) {
-      const imgWrap = document.createElement('div');
-      imgWrap.className = 'sovm-card-image';
-      imgWrap.append(imgRef.cloneNode(true));
-      card.append(imgWrap);
-      card.classList.add('has-image');
-    } else {
-      card.classList.add('no-image');
-    }
+  // If image exists, append it
+  if (image) {
+    const imgWrap = document.createElement('div');
+    imgWrap.className = 'sovm-card-image';
+    const img = document.createElement('img');
+    img.src = image;
+    imgWrap.append(img);
+    card.append(imgWrap);
+  }
 
-    const content = document.createElement('div');
-    content.className = 'sovm-card-content';
+  // Card content
+  const content = document.createElement('div');
+  content.className = 'sovm-card-content';
 
-    // Title
-    const title = item.querySelector('[name="title"]')?.textContent;
-    if (title) {
-      const h3 = document.createElement('h3');
-      h3.textContent = title;
-      content.append(h3);
-    }
+  if (title) {
+    const h3 = document.createElement('h3');
+    h3.textContent = title;
+    content.append(h3);
+  }
 
-    // Description
-    const desc = item.querySelector('[name="text"]')?.innerHTML;
-    if (desc) {
-      const p = document.createElement('p');
-      p.innerHTML = desc;
-      content.append(p);
-    }
+  if (text) {
+    const p = document.createElement('p');
+    p.innerHTML = text; // allow richtext HTML
+    content.append(p);
+  }
 
-    // CTA Button
-    const cta = item.querySelector('[name="ctatext"]')?.textContent;
-    if (cta) {
-      const a = document.createElement('a');
-      a.className = 'sovm-btn';
-      a.href = '#';
-      a.textContent = cta;
-      content.append(a);
-    }
+  if (cta) {
+    const a = document.createElement('a');
+    a.className = 'sovm-btn';
+    a.href = '#';
+    a.textContent = cta;
+    content.append(a);
+  }
 
-    card.append(content);
-    wrapper.append(card);
-  });
+  // Optional SVG icon
+  if (svgPath && svgText) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', `${svgPath}#${svgText}`);
+    svg.append(use);
+    content.append(svg);
+  }
 
-  // Clear and append
+  card.append(content);
+  wrapper.append(card);
+
+  // Clear block content and append wrapper
   block.innerHTML = '';
   block.append(wrapper);
 }

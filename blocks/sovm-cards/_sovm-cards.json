@@ -3,7 +3,6 @@
     {
       "title": "Sovm Cards",
       "id": "sovm-cards",
-      "disableLint": ["xwalk/max-cells"],
       "plugins": {
         "xwalk": {
           "page": {
@@ -16,28 +15,31 @@
           }
         }
       }
-    },
-    {
-      "title": "Sovm Card Item",
-      "id": "sovm-card",
-      "disableLint": ["xwalk/max-cells"],
-      "plugins": {
-        "xwalk": {
-          "page": {
-            "resourceType": "core/franklin/components/block/v1/block/item",
-            "template": {
-              "name": "Sovm Card Item",
-              "model": "sovm-card"
-            }
-          }
-        }
-      }
     }
   ],
   "models": [
     {
-      "id": "sovm-card",
+      "id": "sovm-cards",
       "fields": [
+        {
+          "component": "select",
+          "name": "grid",
+          "label": "Grid Layout",
+          "valueType": "string",
+          "options": [
+            { "name": "3 Columns", "value": "grid-3" }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "card-background",
+          "label": "Card Background",
+          "valueType": "string",
+          "options": [
+            { "name": "White", "value": "card-white" },
+            { "name": "Dark Grey", "value": "card-darkgrey" }
+          ]
+        },
         {
           "component": "reference",
           "name": "image",
@@ -62,24 +64,17 @@
         {
           "component": "text",
           "name": "svgpath",
-          "label": "Svg Path",
+          "label": "SVG Path",
           "valueType": "string"
         },
         {
           "component": "text",
           "name": "svgtext",
-          "label": "Svg Icon Name",
+          "label": "SVG Icon Name",
           "valueType": "string"
         }
       ]
     }
   ],
-  "filters": [
-    {
-      "id": "sovm-cards",
-      "components": [
-        "sovm-card"
-      ]
-    }
-  ]
+  "filters": []
 }
