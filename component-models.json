@@ -142,6 +142,34 @@
             "value": "highlight"
           }
         ]
+      },
+      {
+        "component": "select",
+        "name": "grid",
+        "label": "Grid Layout",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "3 - Columns",
+            "value": "grid-3"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "card-background",
+        "label": "Card Background",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "White",
+            "value": "card-white"
+          },
+          {
+            "name": "Dark Grey",
+            "value": "card-darkgrey"
+          }
+        ]
       }
     ]
   },
@@ -216,39 +244,6 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "sovm-cards",
-    "fields": [
-      {
-        "component": "select",
-        "name": "grid",
-        "label": "Grid Layout",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "3 - Columns",
-            "value": "grid-3"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "name": "card-background",
-        "label": "Card Background",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "White",
-            "value": "card-white"
-          },
-          {
-            "name": "Dark Grey",
-            "value": "card-darkgrey"
-          }
-        ]
       }
     ]
   },
