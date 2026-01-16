@@ -1,83 +1,69 @@
 export default function decorate(block) {
-  console.log('SOVM decorate running');
-
-  // The section wrapper that contains this block
   const section = block.closest('.section');
-
   if (!section) return;
 
-  // Read properties from the section (property-based approach)
-  const grid = section.dataset.grid || '';
-  const cardBg = section.dataset['card-background'] || '';
+  // Read section style property
+  const styles = section.dataset.style ? section.dataset.style.split(' ') : [];
+  const gridClass = styles.find((s) => s.startsWith('grid')) || '';
+  const bgClass = styles.find((s) => s.startsWith('card-')) || '';
 
-  const rows = [...block.children];
-
-  if (rows.length < 1) return;
-
-  const dataRow = rows[0];
-
-  // Assuming the last 4-5 cells in block row contain the card content
-  const imageCell = dataRow.children[0]; // update if your image cell position changes
-  const hasImage = imageCell
-    && imageCell.querySelector('picture')
-    && imageCell.textContent.trim() !== '';
-
-  const paragraphs = [...dataRow.querySelectorAll('p')];
-
-  // Clear block content to rebuild cards
-  block.innerHTML = '';
-
+  // Wrapper
   const wrapper = document.createElement('div');
   wrapper.className = 'sovm-cards-wrapper';
+  if (gridClass) wrapper.classList.add(gridClass);
+  if (bgClass) wrapper.classList.add(bgClass);
 
-  // Apply section properties as classes
-  if (cardBg) wrapper.classList.add(cardBg);
-  if (grid) wrapper.classList.add(grid);
+  // Loop through card items
+  [...block.children].forEach((item) => {
+    const card = document.createElement('div');
+    card.className = 'sovm-card';
 
-  const card = document.createElement('div');
-  card.className = `sovm-card ${hasImage ? 'has-image' : 'no-image'}`;
-
-  // Add image if exists
-  if (hasImage) {
-    const imgWrap = document.createElement('div');
-    imgWrap.className = 'sovm-card-image';
-    const picture = imageCell.querySelector('picture');
-    if (picture) {
-      imgWrap.append(picture.cloneNode(true));
+    // Image
+    const imgRef = item.querySelector('[name="image"] img');
+    if (imgRef) {
+      const imgWrap = document.createElement('div');
+      imgWrap.className = 'sovm-card-image';
+      imgWrap.append(imgRef.cloneNode(true));
+      card.append(imgWrap);
+      card.classList.add('has-image');
+    } else {
+      card.classList.add('no-image');
     }
-    card.append(imgWrap);
-  }
 
-  // Card content
-  const content = document.createElement('div');
-  content.className = 'sovm-card-content';
+    const content = document.createElement('div');
+    content.className = 'sovm-card-content';
 
-  // Title (h3)
-  if (paragraphs[0]) {
-    const h3 = document.createElement('h3');
-    h3.textContent = paragraphs[0].textContent.trim();
-    content.append(h3);
-  }
+    // Title
+    const title = item.querySelector('[name="title"]')?.textContent;
+    if (title) {
+      const h3 = document.createElement('h3');
+      h3.textContent = title;
+      content.append(h3);
+    }
 
-  // Description (p)
-  if (paragraphs[1]) {
-    const p = document.createElement('p');
-    p.textContent = paragraphs[1].textContent.trim();
-    content.append(p);
-  }
+    // Description
+    const desc = item.querySelector('[name="text"]')?.innerHTML;
+    if (desc) {
+      const p = document.createElement('p');
+      p.innerHTML = desc;
+      content.append(p);
+    }
 
-  // CTA Button
-  if (paragraphs[2]) {
-    const a = document.createElement('a');
-    a.className = 'sovm-btn';
-    a.href = '#';
-    a.textContent = paragraphs[2].textContent.trim();
-    content.append(a);
-  }
+    // CTA Button
+    const cta = item.querySelector('[name="ctatext"]')?.textContent;
+    if (cta) {
+      const a = document.createElement('a');
+      a.className = 'sovm-btn';
+      a.href = '#';
+      a.textContent = cta;
+      content.append(a);
+    }
 
-  card.append(content);
-  wrapper.append(card);
+    card.append(content);
+    wrapper.append(card);
+  });
+
+  // Clear and append
+  block.innerHTML = '';
   block.append(wrapper);
-
-  console.log('SOVM card decorated successfully!');
 }

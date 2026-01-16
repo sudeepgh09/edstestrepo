@@ -3,6 +3,7 @@
     {
       "title": "Sovm Cards",
       "id": "sovm-cards",
+      "disableLint": ["xwalk/max-cells"],
       "plugins": {
         "xwalk": {
           "page": {
@@ -19,6 +20,7 @@
     {
       "title": "Sovm Card Item",
       "id": "sovm-card",
+      "disableLint": ["xwalk/max-cells"],
       "plugins": {
         "xwalk": {
           "page": {

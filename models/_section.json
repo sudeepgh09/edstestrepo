@@ -33,27 +33,11 @@
             {
               "name": "Highlight",
               "value": "highlight"
-            }
-          ]
-        },
-        {
-          "component": "select",
-          "name": "grid",
-          "label": "Grid Layout",
-          "valueType": "string",
-          "options": [
+            },
             {
               "name": "3 - Columns",
               "value": "grid-3"
-            }
-          ]
-        },
-        {
-          "component": "select",
-          "name": "card-background",
-          "label": "Card Background",
-          "valueType": "string",
-          "options": [
+            },
             {
               "name": "White",
               "value": "card-white"
