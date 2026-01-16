@@ -230,6 +230,10 @@
           {
             "name": "3 Columns",
             "value": "grid-3"
+          },
+          {
+            "name": "No Grid (Stacked)",
+            "value": "no-grid"
           }
         ]
       },

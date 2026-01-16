@@ -30,6 +30,9 @@ export default function decorate(block) {
 
   const wrapper = document.createElement('div');
   wrapper.className = `sovm-cards-wrapper ${data.grid} ${data.background}`;
+  if (data.grid && data.grid !== 'no-grid') {
+  wrapper.classList.add(data.grid);
+}
 
   const card = document.createElement('div');
   card.className = 'sovm-card';
