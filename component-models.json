@@ -255,7 +255,14 @@
       {
         "component": "reference",
         "name": "image",
-        "label": "Card Image"
+        "label": "Card Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "alt",
+        "label": "Image Alt Text",
+        "valueType": "string"
       },
       {
         "component": "text",
