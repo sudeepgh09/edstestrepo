@@ -268,28 +268,19 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Card Title"
+        "label": "Card Title",
+        "valueType": "string"
       },
       {
         "component": "richtext",
         "name": "text",
-        "label": "Card Description"
-      },
-      {
-        "component": "text",
-        "name": "ctatext",
-        "label": "Button Text"
-      },
-      {
-        "component": "text",
-        "name": "svgpath",
-        "label": "Svg Path",
+        "label": "Card Description",
         "valueType": "string"
       },
       {
         "component": "text",
-        "name": "svgtext",
-        "label": "Svg Icon Name",
+        "name": "ctatext",
+        "label": "CTA Text",
         "valueType": "string"
       }
     ]
