@@ -1,18 +1,18 @@
 export default function decorate(block) {
-  console.log('SOVM decorate running');
+  const wrapper = block.closest('.sovm-cards-wrapper');
+  if (!wrapper) return;
 
-  const configText = block.textContent;
+  // Get styles from section
+  const section = block.closest('.section');
+  const styles = (section?.dataset.style || '').split(' '); // e.g., "grid-3 card-darkgrey"
 
-  const isGrid3 = configText.includes('grid-3');
-  const isWhite = configText.includes('card-white');
-  const isDark = configText.includes('card-darkgrey');
+  // Clear wrapper
+  wrapper.innerHTML = '';
 
   const rows = [...block.children];
-
   if (rows.length < 3) return;
 
   const dataRow = rows[2];
-
   const imageCell = dataRow.children[4];
 
   const hasImage = imageCell
@@ -21,16 +21,10 @@ export default function decorate(block) {
 
   const paragraphs = [...dataRow.querySelectorAll('p')];
 
-  const wrapper = block.closest('.sovm-cards-wrapper');
+  // Apply styles from section
+  styles.forEach(style => wrapper.classList.add(style));
 
-  if (!wrapper) return;
-
-  wrapper.innerHTML = '';
-
-  if (isWhite) wrapper.classList.add('card-white');
-  if (isDark) wrapper.classList.add('card-darkgrey');
-  if (isGrid3) wrapper.classList.add('grid-3');
-
+  // Create card
   const card = document.createElement('div');
   card.className = `sovm-card ${hasImage ? 'has-image' : 'no-image'}`;
 
@@ -39,9 +33,7 @@ export default function decorate(block) {
     imgWrap.className = 'sovm-card-image';
 
     const picture = imageCell.querySelector('picture');
-    if (picture) {
-      imgWrap.append(picture.cloneNode(true));
-    }
+    if (picture) imgWrap.append(picture.cloneNode(true));
 
     card.append(imgWrap);
   }
@@ -49,8 +41,7 @@ export default function decorate(block) {
   const content = document.createElement('div');
   content.className = 'sovm-card-content';
 
-  // ----- TITLE FIX (THIS WAS MISSING EARLIER) -----
-
+  // Title
   if (paragraphs[0]) {
     const h3 = document.createElement('h3');
     h3.textContent = paragraphs[0].textContent.trim();
@@ -76,5 +67,3 @@ export default function decorate(block) {
   card.append(content);
   wrapper.append(card);
 }
-
-console.log('yeahhh!!!');

@@ -142,8 +142,16 @@
             "value": "highlight"
           },
           {
-            "name": "Cards Grid Style",
-            "value": "cards-grid-style"
+            "name": "3 Columns",
+            "value": "grid-3"
+          },
+          {
+            "name": "White Card",
+            "value": "card-white"
+          },
+          {
+            "name": "Dark Grey Card",
+            "value": "card-darkgrey"
           }
         ]
       }
