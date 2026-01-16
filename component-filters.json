@@ -8,6 +8,7 @@
   {
     "id": "section",
     "components": [
+      "sovm-cards",
       "text",
       "image",
       "button",
@@ -15,8 +16,7 @@
       "hero",
       "cards",
       "columns",
-      "fragment",
-      "sovm-cards"
+      "fragment"
     ]
   },
   {
