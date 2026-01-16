@@ -35,7 +35,36 @@
   "models": [
     {
       "id": "sovm-cards",
-      "fields": []
+      "fields": [
+        {
+          "component": "select",
+          "name": "grid",
+          "label": "Grid Layout",
+          "valueType": "string",
+          "options": [
+            {
+              "name": "3 - Columns",
+              "value": "grid-3"
+            }
+          ]
+        },
+        {
+          "component": "select",
+          "name": "card-background",
+          "label": "Card Background",
+          "valueType": "string",
+          "options": [
+            {
+              "name": "White",
+              "value": "card-white"
+            },
+            {
+              "name": "Dark Grey",
+              "value": "card-darkgrey"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "sovm-card",
@@ -49,19 +78,28 @@
         {
           "component": "text",
           "name": "title",
-          "label": "Card Title",
-          "valueType": "string"
+          "label": "Card Title"
         },
         {
           "component": "richtext",
           "name": "text",
-          "label": "Card Description",
-          "valueType": "string"
+          "label": "Card Description"
         },
         {
           "component": "text",
           "name": "ctatext",
-          "label": "CTA Text",
+          "label": "Button Text"
+        },
+        {
+          "component": "text",
+          "name": "svgpath",
+          "label": "Svg Path",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "svgtext",
+          "label": "Svg Icon Name",
           "valueType": "string"
         }
       ]
