@@ -7,6 +7,21 @@ function buildPictureTag(src, alt = '') {
   `;
 }
 
+function extractReferenceUrl(html) {
+  if (!html) return '';
+
+  const temp = document.createElement('div');
+  temp.innerHTML = html;
+
+  const a = temp.querySelector('a');
+  if (a) return a.getAttribute('href');
+
+  const img = temp.querySelector('img');
+  if (img) return img.getAttribute('src');
+
+  return html.trim();
+}
+
 export default function decorate(block) {
   const section = block.closest('.section');
 
@@ -34,51 +49,59 @@ export default function decorate(block) {
       svgtext,
     ] = cols;
 
-    let svgpath = rawSvgPath;
-
-    if (svgpath.includes('<a')) {
-      const temp = document.createElement('div');
-      temp.innerHTML = svgpath;
-      const a = temp.querySelector('a');
-      svgpath = a?.getAttribute('href') || '';
-    }
-
     const card = document.createElement('div');
     card.className = 'sovm-card';
 
+    // ----------- CARD IMAGE (PICTURE TAG ONLY HERE) -----------
     if (image) {
-      card.innerHTML += `
-        <div class="sovm-card-image">
-          ${buildPictureTag(image, title || '')}
-        </div>
-      `;
+      const imgSrc = extractReferenceUrl(image);
+
+      if (imgSrc) {
+        card.innerHTML += `
+          <div class="sovm-card-image">
+            ${buildPictureTag(imgSrc, title || '')}
+          </div>
+        `;
+      }
     }
 
     const content = document.createElement('div');
     content.className = 'sovm-card-content';
 
-    if (title) content.innerHTML += `<h3>${title}</h3>`;
+    if (title) {
+      content.innerHTML += `<h3>${title}</h3>`;
+    }
 
-    if (text) content.innerHTML += `<p>${text}</p>`;
+    if (text) {
+      content.innerHTML += `<p>${text}</p>`;
+    }
 
-    // UPDATED CTA LOGIC WITH LINK
+    // ----------- CTA BUTTON -----------
     if (ctatext) {
-      const href = ctalink || '#';
+      const link = extractReferenceUrl(ctalink) || '#';
 
       content.innerHTML += `
-        <a href="${href}" class="sovm-btn">
+        <a class="sovm-btn" href="${link}">
           ${ctatext}
         </a>
       `;
     }
 
+    // ----------- ICON SECTION (NO PICTURE TAG HERE) -----------
+
+    const svgpath = extractReferenceUrl(rawSvgPath);
+
     if (svgpath && svgtext) {
+      const cleanPath = svgpath.split('?')[0];
+
       content.innerHTML += `
-        <span class="sovm-icon">
+        <a target="_blank"
+           aria-label="${svgtext} (opens in a new window)">
           <svg class="icon">
-            <use xlink:href="${svgpath}#${svgtext}"></use>
+            <use xlink:href="${cleanPath}#${svgtext}"></use>
           </svg>
-        </span>
+          <span class="text">${svgtext}</span>
+        </a>
       `;
     }
 
