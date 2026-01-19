@@ -16,6 +16,11 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
+.sovm-cards-wrapper.no-grid {
+  display: flex;
+  flex-direction: column;
+}
+
 .sovm-cards-wrapper.card-white .sovm-card {
   background: #fff;
 }

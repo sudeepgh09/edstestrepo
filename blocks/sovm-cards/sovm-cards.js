@@ -30,9 +30,14 @@ export default function decorate(block) {
 
   const wrapper = document.createElement('div');
   wrapper.className = 'sovm-cards-wrapper';
-
-  if (grid) wrapper.classList.add(grid);
   if (background) wrapper.classList.add(background);
+  
+  if (grid && grid !== 'no-grid') {
+  wrapper.classList.add(grid);
+} else {
+  wrapper.classList.add('no-grid');
+}
+
 
   const items = [...block.children];
 
