@@ -283,7 +283,7 @@
         "valueType": "string"
       },
       {
-        "component": "reference",
+        "component": "aem-content",
         "name": "svgpath",
         "label": "Svg Path (icon.svg)",
         "valueType": "string"
