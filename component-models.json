@@ -277,7 +277,7 @@
         "label": "Button Text"
       },
       {
-        "component": "reference",
+        "component": "aem-content",
         "name": "ctalink",
         "label": "Button Link",
         "valueType": "string"
