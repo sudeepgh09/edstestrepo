@@ -78,12 +78,5 @@
       ]
     }
   ],
-  "filters": [
-    {
-      "id": "sovm-cards",
-      "components": [
-        "sovm-card"
-      ]
-    }
-  ]
+  "filters": []
 }
