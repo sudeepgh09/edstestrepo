@@ -3,9 +3,22 @@
 .sovm-cards-wrapper {
   padding: 48px 36px 48px 48px;
   border-radius: 14px;
+  box-sizing: border-box;
+}
+
+/* Grid layout support */
+.sovm-cards-wrapper.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.sovm-cards-wrapper.no-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   width: 475px;
   min-height: 370px;
-  box-sizing: border-box;
 }
 
 /* ---------- CARD BASE ---------- */
@@ -15,13 +28,12 @@
   flex-direction: column;
   border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 20px;
 }
 
 /* ---------- IMAGE PRESENT CASE ---------- */
 
 .sovm-card.has-image {
-  flex-direction: column;     /* STACKED MODE */
+  flex-direction: column;
 }
 
 .sovm-card.has-image .sovm-card-image {
@@ -32,6 +44,7 @@
   width: 100%;
   display: block;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .sovm-card.has-image .sovm-card-content {
@@ -41,7 +54,7 @@
 
 /* ---------- NO IMAGE CASE ---------- */
 
-.sovm-card.no-image .sovm-card-image{
+.sovm-card.no-image .sovm-card-image {
   display: none;
 }
 
@@ -52,7 +65,7 @@
 /* ---------- BACKGROUND STYLES ---------- */
 
 .sovm-cards-wrapper.card-white {
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid #fff;
   color: #000;
 }
@@ -62,34 +75,66 @@
   color: white;
 }
 
-/* ---------- BUTTON ---------- */
+/* ---------- CONTENT AREA ---------- */
+
+.sovm-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- BUTTON WITH ICON (PRIMARY FIX) ---------- */
 
 .sovm-btn {
-  display: inline-block;
-  padding: 10px 16px;
-  border-radius: 14px;
-  border: 1px solid #000;
-  text-decoration: none;
-  margin-top: 10px;
-  font-size: 16px;
-}
-
-.sovm-icon {
   display: inline-flex;
   align-items: center;
-  margin-top: 10px;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 1px solid #000;
+
+  text-decoration: none;
+  margin-top: 16px;
+
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.sovm-icon svg.icon {
-  width: 24px;
-  height: 24px;
-  fill: currentcolor;
+/* ICON INSIDE BUTTON */
+
+.sovm-btn svg.icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  fill: currentColor;
 }
+
+/* TEXT INSIDE BUTTON */
+
+.sovm-btn span {
+  display: inline-block;
+  line-height: 1;
+}
+
+/* DARK THEME VARIANT */
 
 .card-darkgrey .sovm-btn {
   border-color: #fff;
   color: #fff;
 }
+
+/* OPTIONAL HOVER EFFECT */
+
+.sovm-btn:hover {
+  opacity: 0.9;
+}
+
 
 /* ---------- TYPOGRAPHY ---------- */
 
@@ -105,4 +150,23 @@
   font-weight: 400;
   letter-spacing: normal;
   line-height: 26px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 1024px) {
+  .sovm-cards-wrapper.grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .sovm-cards-wrapper.grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .sovm-cards-wrapper.no-grid {
+    width: 100%;
+    padding: 24px;
+  }
 }

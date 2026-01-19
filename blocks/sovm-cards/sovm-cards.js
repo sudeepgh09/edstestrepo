@@ -1,5 +1,23 @@
+function extractReferenceUrl(html) {
+  if (!html) return '';
+
+  const temp = document.createElement('div');
+  temp.innerHTML = html;
+
+  const a = temp.querySelector('a');
+  if (a) return a.getAttribute('href');
+
+  const img = temp.querySelector('img');
+  if (img) return img.getAttribute('src');
+
+  return html.replace(/<[^>]*>/g, '').trim();
+}
+
+function cleanText(value) {
+  return value.replace(/<[^>]*>/g, '').trim();
+}
+
 function mapRowsToObject(rows) {
-  // eslint-disable-next-line max-len
   const [
     grid,
     background,
@@ -8,57 +26,66 @@ function mapRowsToObject(rows) {
     title,
     text,
     ctatext,
+    ctalink,
     svgpath,
     svgtext,
   ] = rows;
 
   return {
-    grid: grid?.[0] || '',
-    background: background?.[0] || '',
+    grid: cleanText(grid?.[0] || ''),
+    background: cleanText(background?.[0] || ''),
     image: image?.[0] || '',
-    alt: alt?.[0] || '',
-    title: title?.[0] || '',
-    text: text?.[0] || '',
-    ctatext: ctatext?.[0] || '',
+    alt: cleanText(alt?.[0] || ''),
+    title: cleanText(title?.[0] || ''),
+    text: cleanText(text?.[0] || ''),
+    ctatext: cleanText(ctatext?.[0] || ''),
+    ctalink: ctalink?.[0] || '',
     svgpath: svgpath?.[0] || '',
-    svgtext: svgtext?.[0] || '',
+    svgtext: cleanText(svgtext?.[0] || ''),
   };
 }
 
 export default function decorate(block) {
-  const rows = [...block.children].map((row) => [...row.children].map((c) => c.textContent.trim()));
+  const rows = [...block.children].map((row) =>
+    [...row.children].map((c) => c.innerHTML.trim())
+  );
 
   const data = mapRowsToObject(rows);
 
   const wrapper = document.createElement('div');
-  wrapper.className = `sovm-cards-wrapper ${data.background}`;
+  wrapper.className = `sovm-cards-wrapper`;
+
+  if (data.background) {
+    wrapper.classList.add(data.background);
+  }
 
   if (data.grid && data.grid !== 'no-grid') {
     wrapper.classList.add(data.grid);
+  } else {
+    wrapper.classList.add('no-grid');
   }
 
   const card = document.createElement('div');
   card.className = 'sovm-card';
 
-  // ----- IMAGE WITH PICTURE TAG -----
-
+  // ----- IMAGE (ONLY PLACE WITH PICTURE TAG) -----
   if (data.image) {
+    const imgSrc = extractReferenceUrl(data.image);
+
     const imageWrapper = document.createElement('div');
     imageWrapper.className = 'sovm-card-image';
 
-    const picture = document.createElement('picture');
+    imageWrapper.innerHTML = `
+      <picture>
+        <source srcset="${imgSrc}" type="image/webp">
+        <img src="${imgSrc}" alt="${data.alt || ''}">
+      </picture>
+    `;
 
-    const img = document.createElement('img');
-    img.src = data.image;
-    img.alt = data.alt || '';
-
-    picture.append(img);
-    imageWrapper.append(picture);
     card.append(imageWrapper);
   }
 
-  // ----- CONTENT SECTION -----
-
+  // ----- CONTENT -----
   const content = document.createElement('div');
   content.className = 'sovm-card-content';
 
@@ -74,23 +101,46 @@ export default function decorate(block) {
     content.append(p);
   }
 
+  // ----- CTA BUTTON WITH SVGUSEMIN ICON -----
   if (data.ctatext) {
     const btn = document.createElement('a');
     btn.className = 'sovm-btn';
-    btn.textContent = data.ctatext;
+
+    btn.href = data.ctalink
+      ? extractReferenceUrl(data.ctalink)
+      : '#';
+
+    // SVG ICON FIRST
+    if (data.svgpath && data.svgtext) {
+      const svg = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'svg'
+      );
+      svg.classList.add('icon');
+
+      const use = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'use'
+      );
+
+      const iconPath = extractReferenceUrl(data.svgpath);
+
+      use.setAttributeNS(
+        'http://www.w3.org/1999/xlink',
+        'xlink:href',
+        `${iconPath}#${data.svgtext}`
+      );
+
+      svg.append(use);
+      btn.append(svg);
+    }
+
+    // Text after icon
+    const span = document.createElement('span');
+    span.textContent = data.ctatext;
+    btn.append(span);
+
     content.append(btn);
-  }
-
-  if (data.svgpath && data.svgtext) {
-    const iconSpan = document.createElement('span');
-    iconSpan.className = 'sovm-icon';
-
-    const iconImg = document.createElement('img');
-    iconImg.src = data.svgpath;
-    iconImg.alt = data.svgtext;
-
-    iconSpan.append(iconImg);
-    content.append(iconSpan);
   }
 
   card.append(content);
