@@ -236,12 +236,48 @@
     ]
   },
   {
-    "id": "sovm-card",
+    "id": "sovm-cards",
     "fields": [
+      {
+        "component": "select",
+        "name": "grid",
+        "label": "Grid Layout",
+        "options": [
+          {
+            "name": "3 Columns",
+            "value": "grid-3"
+          },
+          {
+            "name": "No Grid (Stacked)",
+            "value": "no-grid"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "card-background",
+        "label": "Card Background",
+        "options": [
+          {
+            "name": "White",
+            "value": "card-white"
+          },
+          {
+            "name": "Dark Grey",
+            "value": "card-darkgrey"
+          }
+        ]
+      },
       {
         "component": "reference",
         "name": "image",
         "label": "Card Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "alt",
+        "label": "Image Alt Text",
         "valueType": "string"
       },
       {
@@ -268,14 +304,12 @@
       {
         "component": "aem-content",
         "name": "svgpath",
-        "label": "Svg Path (icon.svg)",
-        "valueType": "string"
+        "label": "Svg Path"
       },
       {
         "component": "text",
         "name": "svgtext",
-        "label": "Svg Icon Name",
-        "valueType": "string"
+        "label": "Svg Icon Name"
       }
     ]
   }

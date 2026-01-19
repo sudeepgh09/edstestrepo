@@ -1,59 +1,77 @@
-.sovm-card {
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
-}
+/* ---------- OUTER WRAPPER ---------- */
 
 .sovm-cards-wrapper {
+  padding: 48px 36px 48px 48px;
+  border-radius: 14px;
+  width: 475px;
+  min-height: 370px;
+  box-sizing: border-box;
+}
+
+/* ---------- CARD BASE ---------- */
+
+.sovm-card {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
-.sovm-cards-wrapper.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+/* ---------- IMAGE PRESENT CASE ---------- */
+
+.sovm-card.has-image {
+  flex-direction: column;     /* STACKED MODE */
 }
 
-.sovm-cards-wrapper.no-grid {
-  display: flex;
-  flex-direction: column;
-}
-
-.sovm-cards-wrapper.card-white .sovm-card {
-  background: #fff;
-}
-
-.sovm-cards-wrapper.card-darkgrey .sovm-card {
-  background: #2d2d2d;
-  color: #fff;
-}
-
-
-.sovm-card-image img {
+.sovm-card.has-image .sovm-card-image {
   width: 100%;
-  border-radius: 8px;
 }
 
-.sovm-card-content h3 {
-  margin-top: 10px;
-  font-size: 20px;
+.sovm-card.has-image .sovm-card-image img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
 }
 
-.sovm-card-content p {
-  font-size: 14px;
-  margin: 10px 0;
+.sovm-card.has-image .sovm-card-content {
+  width: 100%;
+  margin-top: 16px;
 }
+
+/* ---------- NO IMAGE CASE ---------- */
+
+.sovm-card.no-image .sovm-card-image{
+  display: none;
+}
+
+.sovm-card.no-image .sovm-card-content {
+  width: 100%;
+}
+
+/* ---------- BACKGROUND STYLES ---------- */
+
+.sovm-cards-wrapper.card-white {
+  background: rgba(255,255,255,0.5);
+  border: 1px solid #fff;
+  color: #000;
+}
+
+.sovm-cards-wrapper.card-darkgrey {
+  background: #2a2a2a;
+  color: white;
+}
+
+/* ---------- BUTTON ---------- */
 
 .sovm-btn {
   display: inline-block;
-  margin-top: 10px;
-  padding: 8px 14px;
-  background: var(--bg-secondary);
-  color: white;
+  padding: 10px 16px;
+  border-radius: 14px;
+  border: 1px solid #000;
   text-decoration: none;
-  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 16px;
 }
 
 .sovm-icon {
@@ -68,3 +86,23 @@
   fill: currentcolor;
 }
 
+.card-darkgrey .sovm-btn {
+  border-color: #fff;
+  color: #fff;
+}
+
+/* ---------- TYPOGRAPHY ---------- */
+
+.sovm-cards-wrapper .sovm-card-content h3 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 22px;
+  line-height: 40px;
+}
+
+.sovm-cards-wrapper .sovm-card-content p {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 26px;
+}

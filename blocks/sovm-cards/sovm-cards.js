@@ -1,119 +1,100 @@
-function buildPictureTag(src, alt = '') {
-  return `
-    <picture>
-      <source srcset="${src}" type="image/webp">
-      <img src="${src}" alt="${alt}">
-    </picture>
-  `;
-}
+function mapRowsToObject(rows) {
+  // eslint-disable-next-line max-len
+  const [
+    grid,
+    background,
+    image,
+    alt,
+    title,
+    text,
+    ctatext,
+    svgpath,
+    svgtext,
+  ] = rows;
 
-function extractReferenceUrl(html) {
-  if (!html) return '';
-
-  const temp = document.createElement('div');
-  temp.innerHTML = html;
-
-  const a = temp.querySelector('a');
-  if (a) return a.getAttribute('href');
-
-  const img = temp.querySelector('img');
-  if (img) return img.getAttribute('src');
-
-  return html.trim();
+  return {
+    grid: grid?.[0] || '',
+    background: background?.[0] || '',
+    image: image?.[0] || '',
+    alt: alt?.[0] || '',
+    title: title?.[0] || '',
+    text: text?.[0] || '',
+    ctatext: ctatext?.[0] || '',
+    svgpath: svgpath?.[0] || '',
+    svgtext: svgtext?.[0] || '',
+  };
 }
 
 export default function decorate(block) {
-  const section = block.closest('.section');
+  const rows = [...block.children].map((row) => [...row.children].map((c) => c.textContent.trim()));
+
+  const data = mapRowsToObject(rows);
 
   const wrapper = document.createElement('div');
-  wrapper.className = 'sovm-cards-wrapper';
+  wrapper.className = `sovm-cards-wrapper ${data.background}`;
 
-  // ----- LAYOUT CLASSES FROM SECTION -----
-
-  if (section.classList.contains('grid-3')) {
-    wrapper.classList.add('grid-3');
-  } else {
-    wrapper.classList.add('no-grid');
+  if (data.grid && data.grid !== 'no-grid') {
+    wrapper.classList.add(data.grid);
   }
 
-  if (section.classList.contains('card-darkgrey')) {
-    wrapper.classList.add('card-darkgrey');
+  const card = document.createElement('div');
+  card.className = 'sovm-card';
+
+  // ----- IMAGE WITH PICTURE TAG -----
+
+  if (data.image) {
+    const imageWrapper = document.createElement('div');
+    imageWrapper.className = 'sovm-card-image';
+
+    const picture = document.createElement('picture');
+
+    const img = document.createElement('img');
+    img.src = data.image;
+    img.alt = data.alt || '';
+
+    picture.append(img);
+    imageWrapper.append(picture);
+    card.append(imageWrapper);
   }
 
-  if (section.classList.contains('card-white')) {
-    wrapper.classList.add('card-white');
+  // ----- CONTENT SECTION -----
+
+  const content = document.createElement('div');
+  content.className = 'sovm-card-content';
+
+  if (data.title) {
+    const h3 = document.createElement('h3');
+    h3.textContent = data.title;
+    content.append(h3);
   }
 
-  const items = [...block.children];
+  if (data.text) {
+    const p = document.createElement('p');
+    p.textContent = data.text;
+    content.append(p);
+  }
 
-  items.forEach((item) => {
-    const cols = [...item.children].map((c) => c.innerHTML.trim());
+  if (data.ctatext) {
+    const btn = document.createElement('a');
+    btn.className = 'sovm-btn';
+    btn.textContent = data.ctatext;
+    content.append(btn);
+  }
 
-    const [
-      image,
-      title,
-      text,
-      ctatext,
-      ctalink,
-      rawSvgPath,
-      svgtext,
-    ] = cols;
+  if (data.svgpath && data.svgtext) {
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'sovm-icon';
 
-    const card = document.createElement('div');
-    card.className = 'sovm-card';
+    const iconImg = document.createElement('img');
+    iconImg.src = data.svgpath;
+    iconImg.alt = data.svgtext;
 
-    // -------- IMAGE (ONLY REAL IMAGE GETS PICTURE TAG) --------
-    if (image) {
-      const imgSrc = extractReferenceUrl(image);
+    iconSpan.append(iconImg);
+    content.append(iconSpan);
+  }
 
-      if (imgSrc) {
-        card.innerHTML += `
-          <div class="sovm-card-image">
-            ${buildPictureTag(imgSrc, title || '')}
-          </div>
-        `;
-      }
-    }
-
-    const content = document.createElement('div');
-    content.className = 'sovm-card-content';
-
-    if (title) {
-      content.innerHTML += `<h3>${title}</h3>`;
-    }
-
-    if (text) {
-      content.innerHTML += `<p>${text}</p>`;
-    }
-
-    // -------- CTA BUTTON WITH ICON INSIDE --------
-    if (ctatext) {
-      const link = extractReferenceUrl(ctalink) || '#';
-
-      let iconMarkup = '';
-      const svgpath = extractReferenceUrl(rawSvgPath);
-
-      if (svgpath && svgtext) {
-        const cleanPath = svgpath.split('?')[0];
-
-        iconMarkup = `
-          <svg class="icon">
-            <use xlink:href="${cleanPath}#${svgtext}"></use>
-          </svg>
-        `;
-      }
-
-      content.innerHTML += `
-        <a class="sovm-btn" href="${link}" target="_blank">
-          ${iconMarkup}
-          <span>${ctatext}</span>
-        </a>
-      `;
-    }
-
-    card.appendChild(content);
-    wrapper.appendChild(card);
-  });
+  card.append(content);
+  wrapper.append(card);
 
   block.replaceChildren(wrapper);
 }
