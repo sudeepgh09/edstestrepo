@@ -30,14 +30,15 @@ export default function decorate(block) {
 
   const wrapper = document.createElement('div');
   wrapper.className = 'sovm-cards-wrapper';
-  if (background) wrapper.classList.add(background);
-  
-  if (grid && grid !== 'no-grid') {
-  wrapper.classList.add(grid);
-} else {
-  wrapper.classList.add('no-grid');
-}
 
+  if (background) wrapper.classList.add(background);
+
+  // Grid / No-grid logic
+  if (grid && grid !== 'no-grid') {
+    wrapper.classList.add(grid);
+  } else {
+    wrapper.classList.add('no-grid');
+  }
 
   const items = [...block.children];
 
@@ -57,7 +58,7 @@ export default function decorate(block) {
     const card = document.createElement('div');
     card.className = 'sovm-card';
 
-    // ----------- CARD IMAGE (PICTURE TAG ONLY HERE) -----------
+    // ----------- CARD IMAGE (ONLY PLACE USING PICTURE TAG) -----------
     if (image) {
       const imgSrc = extractReferenceUrl(image);
 
@@ -81,33 +82,31 @@ export default function decorate(block) {
       content.innerHTML += `<p>${text}</p>`;
     }
 
-    // ----------- CTA BUTTON -----------
+    // ----------- CTA BUTTON WITH OPTIONAL ICON INSIDE -----------
     if (ctatext) {
       const link = extractReferenceUrl(ctalink) || '#';
 
-      content.innerHTML += `
-        <a class="sovm-btn" href="${link}">
-          ${ctatext}
-        </a>
-      `;
-    }
+      let buttonHTML = `<a class="sovm-btn" href="${link}">`;
 
-    // ----------- ICON SECTION (NO PICTURE TAG HERE) -----------
+      const svgpath = extractReferenceUrl(rawSvgPath);
 
-    const svgpath = extractReferenceUrl(rawSvgPath);
+      // Add icon INSIDE button if present
+      if (svgpath && svgtext) {
+        const cleanPath = svgpath.split('?')[0];
 
-    if (svgpath && svgtext) {
-      const cleanPath = svgpath.split('?')[0];
-
-      content.innerHTML += `
-        <a target="_blank"
-           aria-label="${svgtext} (opens in a new window)">
+        buttonHTML += `
           <svg class="icon">
             <use xlink:href="${cleanPath}#${svgtext}"></use>
           </svg>
-          <span class="text">${svgtext}</span>
-        </a>
-      `;
+        `;
+      }
+
+      // Add CTA text
+      buttonHTML += `<span class="text">${ctatext}</span>`;
+
+      buttonHTML += `</a>`;
+
+      content.innerHTML += buttonHTML;
     }
 
     card.appendChild(content);
