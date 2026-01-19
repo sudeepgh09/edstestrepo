@@ -1,102 +1,90 @@
-function mapRowsToObject(rows) {
-  // eslint-disable-next-line max-len
-  const [
-    grid,
-    background,
-    image,
-    alt,
-    title,
-    text,
-    ctatext,
-    svgpath,
-    svgtext,
-  ] = rows;
-
-  return {
-    grid: grid?.[0] || '',
-    background: background?.[0] || '',
-    image: image?.[0] || '',
-    alt: alt?.[0] || '',
-    title: title?.[0] || '',
-    text: text?.[0] || '',
-    ctatext: ctatext?.[0] || '',
-    svgpath: svgpath?.[0] || '',
-    svgtext: svgtext?.[0] || '',
-  };
+function buildPictureTag(src, alt = '') {
+  return `
+    <picture>
+      <source srcset="${src}" type="image/webp">
+      <img src="${src}" alt="${alt}">
+    </picture>
+  `;
 }
 
 export default function decorate(block) {
-  const rows = [...block.children].map((row) =>
-    [...row.children].map((c) => c.textContent.trim())
-  );
+  const section = block.closest('.section');
 
-  const data = mapRowsToObject(rows);
+  const grid = section?.dataset.grid || '';
+  const background = section?.dataset.cardBackground || '';
 
   const wrapper = document.createElement('div');
-  wrapper.className = `sovm-cards-wrapper ${data.background}`;
+  wrapper.className = 'sovm-cards-wrapper';
 
-  if (data.grid && data.grid !== 'no-grid') {
-    wrapper.classList.add(data.grid);
-  }
+  if (grid) wrapper.classList.add(grid);
+  if (background) wrapper.classList.add(background);
 
-  const card = document.createElement('div');
-  card.className = 'sovm-card';
+  const items = [...block.children];
 
-  // ----- IMAGE WITH PICTURE TAG -----
+  items.forEach((item) => {
+    const cols = [...item.children].map((c) => c.innerHTML.trim());
 
-  if (data.image) {
-    const imageWrapper = document.createElement('div');
-    imageWrapper.className = 'sovm-card-image';
+    const [
+      image,
+      title,
+      text,
+      ctatext,
+      ctalink,
+      rawSvgPath,
+      svgtext,
+    ] = cols;
 
-    const picture = document.createElement('picture');
+    let svgpath = rawSvgPath;
 
-    const img = document.createElement('img');
-    img.src = data.image;
-    img.alt = data.alt || '';
+    if (svgpath.includes('<a')) {
+      const temp = document.createElement('div');
+      temp.innerHTML = svgpath;
+      const a = temp.querySelector('a');
+      svgpath = a?.getAttribute('href') || '';
+    }
 
-    picture.append(img);
-    imageWrapper.append(picture);
-    card.append(imageWrapper);
-  }
+    const card = document.createElement('div');
+    card.className = 'sovm-card';
 
-  // ----- CONTENT SECTION -----
+    if (image) {
+      card.innerHTML += `
+        <div class="sovm-card-image">
+          ${buildPictureTag(image, title || '')}
+        </div>
+      `;
+    }
 
-  const content = document.createElement('div');
-  content.className = 'sovm-card-content';
+    const content = document.createElement('div');
+    content.className = 'sovm-card-content';
 
-  if (data.title) {
-    const h3 = document.createElement('h3');
-    h3.textContent = data.title;
-    content.append(h3);
-  }
+    if (title) content.innerHTML += `<h3>${title}</h3>`;
 
-  if (data.text) {
-    const p = document.createElement('p');
-    p.textContent = data.text;
-    content.append(p);
-  }
+    if (text) content.innerHTML += `<p>${text}</p>`;
 
-  if (data.ctatext) {
-    const btn = document.createElement('a');
-    btn.className = 'sovm-btn';
-    btn.textContent = data.ctatext;
-    content.append(btn);
-  }
+    // UPDATED CTA LOGIC WITH LINK
+    if (ctatext) {
+      const href = ctalink || '#';
 
-  if (data.svgpath && data.svgtext) {
-    const iconSpan = document.createElement('span');
-    iconSpan.className = 'sovm-icon';
+      content.innerHTML += `
+        <a href="${href}" class="sovm-btn">
+          ${ctatext}
+        </a>
+      `;
+    }
 
-    const iconImg = document.createElement('img');
-    iconImg.src = data.svgpath;
-    iconImg.alt = data.svgtext;
+    if (svgpath && svgtext) {
+      content.innerHTML += `
+        <span class="sovm-icon">
+          <svg class="icon">
+            <use xlink:href="${svgpath}#${svgtext}"></use>
+          </svg>
+        </span>
+      `;
+    }
 
-    iconSpan.append(iconImg);
-    content.append(iconSpan);
-  }
-
-  card.append(content);
-  wrapper.append(card);
+    card.appendChild(content);
+    wrapper.appendChild(card);
+  });
 
   block.replaceChildren(wrapper);
 }

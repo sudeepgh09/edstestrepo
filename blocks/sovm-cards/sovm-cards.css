@@ -1,3 +1,9 @@
+.sovm-card {
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+}
+
 .sovm-cards-wrapper {
   display: flex;
   flex-direction: column;
@@ -11,19 +17,14 @@
 }
 
 .sovm-cards-wrapper.card-white .sovm-card {
-  background: #ffffff;
+  background: #fff;
 }
 
 .sovm-cards-wrapper.card-darkgrey .sovm-card {
   background: #2d2d2d;
-  color: #ffffff;
+  color: #fff;
 }
 
-.sovm-card {
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
 
 .sovm-card-image img {
   width: 100%;
@@ -49,3 +50,16 @@
   text-decoration: none;
   border-radius: 5px;
 }
+
+.sovm-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.sovm-icon svg.icon {
+  width: 24px;
+  height: 24px;
+  fill: currentcolor;
+}
+
