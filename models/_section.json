@@ -33,6 +33,22 @@
             {
               "name": "Highlight",
               "value": "highlight"
+            },
+            {
+              "name": "Grid 3 Columns",
+              "value": "grid-3"
+            },
+            {
+              "name": "No Grid (Stacked)",
+              "value": "no-grid"
+            },
+            {
+              "name": "White Cards",
+              "value": "card-white"
+            },
+            {
+              "name": "Dark Grey Cards",
+              "value": "card-darkgrey"
             }
           ]
         }
