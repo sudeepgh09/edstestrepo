@@ -89,7 +89,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: row-reverse;
-  gap: 190px;
+  gap: 180px;
   padding: 7px 10px 11px 24px;
   border-radius: 14px;
   border: 1px solid #000;
@@ -100,22 +100,30 @@
   font-weight: 500;
   cursor: pointer;
   transition: 0.4s ease-out;
+  background: var(--color-brand-green);
+}
+.sovm-btn:hover{
+  background: var(--color-brand-green-25);
 }
 
 /* ICON INSIDE BUTTON */
 
 .sovm-btn svg.icon {
-  width: 37px;
-  height: 37px;
   display: inline-block;
   fill: currentColor;
+  border: 1px solid #282b3a;
+  border-radius: 9px;
+  padding: 0.625rem;
+  background: var(--light-color);
 }
 
 /* TEXT INSIDE BUTTON */
 
 .sovm-btn span {
   display: inline-block;
-  line-height: 1;
+  line-height: 27px;
+  font-weight: 500;
+  color: #000;
 }
 
 /* DARK THEME VARIANT */
