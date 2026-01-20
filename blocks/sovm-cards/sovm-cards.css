@@ -88,29 +88,25 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  gap: 10px;
-
-  padding: 12px 18px;
+  flex-direction: row-reverse;
+  gap: 190px;
+  padding: 7px 10px 11px 24px;
   border-radius: 14px;
   border: 1px solid #000;
-
   text-decoration: none;
   margin-top: 16px;
-
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.2;
   font-weight: 500;
-
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: 0.4s ease-out;
 }
 
 /* ICON INSIDE BUTTON */
 
 .sovm-btn svg.icon {
-  width: 20px;
-  height: 20px;
+  width: 37px;
+  height: 37px;
   display: inline-block;
   fill: currentColor;
 }

@@ -46,14 +46,12 @@ function mapRowsToObject(rows) {
 }
 
 export default function decorate(block) {
-  const rows = [...block.children].map((row) =>
-    [...row.children].map((c) => c.innerHTML.trim())
-  );
+  const rows = [...block.children].map((row) => [...row.children].map((c) => c.innerHTML.trim()));
 
   const data = mapRowsToObject(rows);
 
   const wrapper = document.createElement('div');
-  wrapper.className = `sovm-cards-wrapper`;
+  wrapper.className = 'sovm-cards-wrapper';
 
   if (data.background) {
     wrapper.classList.add(data.background);
@@ -114,13 +112,13 @@ export default function decorate(block) {
     if (data.svgpath && data.svgtext) {
       const svg = document.createElementNS(
         'http://www.w3.org/2000/svg',
-        'svg'
+        'svg',
       );
       svg.classList.add('icon');
 
       const use = document.createElementNS(
         'http://www.w3.org/2000/svg',
-        'use'
+        'use',
       );
 
       const iconPath = extractReferenceUrl(data.svgpath);
@@ -128,7 +126,7 @@ export default function decorate(block) {
       use.setAttributeNS(
         'http://www.w3.org/1999/xlink',
         'xlink:href',
-        `${iconPath}#${data.svgtext}`
+        `${iconPath}#${data.svgtext}`,
       );
 
       svg.append(use);
