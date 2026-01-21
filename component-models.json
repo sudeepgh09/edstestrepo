@@ -148,14 +148,6 @@
           {
             "name": "No Grid (Stacked)",
             "value": "no-grid"
-          },
-          {
-            "name": "White Cards",
-            "value": "card-white"
-          },
-          {
-            "name": "Dark Grey Cards",
-            "value": "card-darkgrey"
           }
         ]
       }
