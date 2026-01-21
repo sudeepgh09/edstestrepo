@@ -292,7 +292,7 @@
         "component": "multiselect",
         "name": "isLogo",
         "label": "Is this image a logo?",
-        "valueType": "string",
+        "valueType": "boolean",
         "options": [
           {
             "value": "false",
