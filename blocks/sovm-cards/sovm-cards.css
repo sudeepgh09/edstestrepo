@@ -65,9 +65,8 @@
 .section.grid-3 .sovm-card-image.is-logo {
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 180px; /* FIXED IMAGE HEIGHT */
-  padding: 1.5rem;
+  justify-content: normal;
+  padding: 3rem 2.25rem 0;
 }
 
 .section.grid-3 .sovm-card-image.is-logo img {

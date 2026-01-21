@@ -78,7 +78,7 @@
           "name": "svgtext",
           "label": "Svg Icon Name"
         },
-        { "component":"select",
+        { "component":"multiselect",
           "name": "isLogo",
           "label": "Is this image a logo?",
           "valueType": "string",
