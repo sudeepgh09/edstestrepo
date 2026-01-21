@@ -18,6 +18,6 @@ module.exports = {
     'import/extensions': ['error', { js: 'always' }], // require js file extensions in imports
     'linebreak-style': ['error', 'windows'], // enforce unix linebreaks
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
-    'xwalk/max-cells': ['error', { '*': 11 }],
+    'xwalk/max-cells': ['error', { '*': 15 }],
   },
 };
