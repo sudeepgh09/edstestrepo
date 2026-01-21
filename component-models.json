@@ -292,7 +292,6 @@
         "component": "select",
         "name": "isLogo",
         "label": "Is this image a logo?",
-        "default": "false",
         "valueType": "string",
         "options": [
           {
