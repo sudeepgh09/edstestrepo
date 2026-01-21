@@ -240,21 +240,6 @@
     "fields": [
       {
         "component": "select",
-        "name": "grid",
-        "label": "Grid Layout",
-        "options": [
-          {
-            "name": "3 Columns",
-            "value": "grid-3"
-          },
-          {
-            "name": "No Grid (Stacked)",
-            "value": "no-grid"
-          }
-        ]
-      },
-      {
-        "component": "select",
         "name": "card-background",
         "label": "Card Background",
         "options": [

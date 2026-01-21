@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-/* Grid layout support */
+/* Grid */
 .sovm-cards-wrapper.grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -21,7 +21,6 @@
   min-height: 370px;
 }
 
-/* ---------- CARD BASE ---------- */
 
 .sovm-card {
   display: flex;
@@ -30,7 +29,7 @@
   overflow: hidden;
 }
 
-/* ---------- IMAGE PRESENT CASE ---------- */
+/* ---------- IMAGE ---------- */
 
 .sovm-card.has-image {
   flex-direction: column;
@@ -45,6 +44,13 @@
   display: block;
   object-fit: cover;
   border-radius: 10px;
+}
+
+/* ---------- CONTENT AREA ---------- */
+
+.sovm-card-content {
+  display: flex;
+  flex-direction: column;
 }
 
 .sovm-card.has-image .sovm-card-content {
@@ -62,37 +68,30 @@
   width: 100%;
 }
 
-/* ---------- BACKGROUND STYLES ---------- */
+/* ---------- BACKGROUND THEME STYLES ---------- */
 
 .sovm-cards-wrapper.card-white {
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid #fff;
-  color: #000;
+  background: var(--bg-white-50);
+  border: 1px solid var(--background-color);
+  color: var(--bg-primary);
 }
 
 .sovm-cards-wrapper.card-darkgrey {
-  background: #2a2a2a;
-  color: white;
+  background: var(--bg-primary);
+  color: var(--color-white);
 }
 
-/* ---------- CONTENT AREA ---------- */
-
-.sovm-card-content {
-  display: flex;
-  flex-direction: column;
-}
-
-/* ---------- BUTTON WITH ICON (PRIMARY FIX) ---------- */
+/* ---------- BUTTON WITH ICON  ---------- */
 
 .sovm-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-direction: row-reverse;
-  gap: 180px;
+  gap: 160px;
   padding: 7px 10px 11px 24px;
   border-radius: 14px;
-  border: 1px solid #000;
+  border: 1px solid var(--bg-primary);
   text-decoration: none;
   margin-top: 16px;
   font-size: 18px;
@@ -102,41 +101,32 @@
   transition: 0.4s ease-out;
   background: var(--color-brand-green);
 }
+
 .sovm-btn:hover{
   background: var(--color-brand-green-25);
+  opacity: 0.9;
 }
-
-/* ICON INSIDE BUTTON */
 
 .sovm-btn svg.icon {
   display: inline-block;
-  fill: currentColor;
-  border: 1px solid #282b3a;
+  fill: currentcolor;
+  border: 1px solid var(--bg-primary);
   border-radius: 9px;
   padding: 0.625rem;
   background: var(--light-color);
 }
 
-/* TEXT INSIDE BUTTON */
 
 .sovm-btn span {
   display: inline-block;
   line-height: 27px;
   font-weight: 500;
-  color: #000;
+  color: var(--bg-primary);
 }
-
-/* DARK THEME VARIANT */
 
 .card-darkgrey .sovm-btn {
-  border-color: #fff;
-  color: #fff;
-}
-
-/* OPTIONAL HOVER EFFECT */
-
-.sovm-btn:hover {
-  opacity: 0.9;
+  border-color: var(--color-white);
+  color: var(--color-white);
 }
 
 
@@ -158,13 +148,27 @@
 
 /* ---------- RESPONSIVE ---------- */
 
-@media (max-width: 1024px) {
+/* @media (width <= 1024px) {
+  .sovm-cards-wrapper.grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+} */
+
+/* Desktop view: 3 cards */
+.sovm-cards-wrapper.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Tablet view: 2 cards */
+@media (max-width: 992px) {
   .sovm-cards-wrapper.grid-3 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-@media (max-width: 768px) {
+/* 1 card for mobile view */
+@media (max-width : 768px) {
   .sovm-cards-wrapper.grid-3 {
     grid-template-columns: 1fr;
   }

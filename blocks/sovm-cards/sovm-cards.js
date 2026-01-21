@@ -19,7 +19,6 @@ function cleanText(value) {
 
 function mapRowsToObject(rows) {
   const [
-    grid,
     background,
     image,
     alt,
@@ -32,7 +31,6 @@ function mapRowsToObject(rows) {
   ] = rows;
 
   return {
-    grid: cleanText(grid?.[0] || ''),
     background: cleanText(background?.[0] || ''),
     image: image?.[0] || '',
     alt: cleanText(alt?.[0] || ''),
@@ -46,6 +44,7 @@ function mapRowsToObject(rows) {
 }
 
 export default function decorate(block) {
+  const section = block.closest('.section');
   const rows = [...block.children].map((row) => [...row.children].map((c) => c.innerHTML.trim()));
 
   const data = mapRowsToObject(rows);
@@ -57,8 +56,8 @@ export default function decorate(block) {
     wrapper.classList.add(data.background);
   }
 
-  if (data.grid && data.grid !== 'no-grid') {
-    wrapper.classList.add(data.grid);
+  if (section && section.classList.contains('grid-3')) {
+    wrapper.classList.add('grid-3');
   } else {
     wrapper.classList.add('no-grid');
   }
