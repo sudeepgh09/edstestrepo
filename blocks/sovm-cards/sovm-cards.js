@@ -41,7 +41,7 @@ function mapRowsToObject(rows) {
     ctalink: ctalink?.[0] || '',
     svgpath: svgpath?.[0] || '',
     svgtext: cleanText(svgtext?.[0] || ''),
-    isLogo: cleanText(isLogo?.[0] || 'false') === 'true',
+    isLogo: cleanText(isLogo?.[0] || 'No') === 'Yes',
   };
 }
 

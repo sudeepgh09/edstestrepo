@@ -81,14 +81,14 @@
         { "component":"multiselect",
           "name": "isLogo",
           "label": "Is this image a logo?",
-          "valueType": "boolean",
+          "valueType": "string",
           "options": [
             {
-              "value": "false",
+              "value": "No",
               "label": "No"
             },
             {
-              "value": "true",
+              "value": "Yes",
               "label": "Yes"
             }
           ]
