@@ -16,7 +16,6 @@
       }
     }
   ],
-
   "models": [
     {
       "id": "sovm-cards",
@@ -36,7 +35,6 @@
             }
           ]
         },
-
         {
           "component": "reference",
           "name": "image",
@@ -54,19 +52,17 @@
           "name": "title",
           "label": "Card Title"
         },
-
         {
           "component": "richtext",
           "name": "text",
           "label": "Card Description"
         },
-
         {
           "component": "text",
           "name": "ctatext",
           "label": "Button Text"
         },
-		{
+        {
           "component": "aem-content",
           "name": "ctalink",
           "label": "Button Link",
@@ -77,16 +73,19 @@
           "name": "svgpath",
           "label": "Svg Path"
         },
-
         {
           "component": "text",
           "name": "svgtext",
           "label": "Svg Icon Name"
+        },
+        {
+          "name": "isLogo",
+          "label": "Is this a logo image?",
+          "type": "boolean",
+          "default": false
         }
-
       ]
     }
   ],
-
   "filters": []
 }

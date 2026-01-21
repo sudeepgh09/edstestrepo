@@ -28,6 +28,7 @@ function mapRowsToObject(rows) {
     ctalink,
     svgpath,
     svgtext,
+    isLogo, 
   ] = rows;
 
   return {
@@ -40,12 +41,15 @@ function mapRowsToObject(rows) {
     ctalink: ctalink?.[0] || '',
     svgpath: svgpath?.[0] || '',
     svgtext: cleanText(svgtext?.[0] || ''),
+    isLogo: cleanText(isLogo?.[0] || '').toLowerCase() === 'true',
   };
 }
 
 export default function decorate(block) {
   const section = block.closest('.section');
-  const rows = [...block.children].map((row) => [...row.children].map((c) => c.innerHTML.trim()));
+  const rows = [...block.children].map((row) =>
+    [...row.children].map((c) => c.innerHTML.trim()),
+  );
 
   const data = mapRowsToObject(rows);
 
@@ -56,7 +60,9 @@ export default function decorate(block) {
     wrapper.classList.add(data.background);
   }
 
-  if (section?.classList.contains('grid-3')) {
+  const isGrid3 = section?.classList.contains('grid-3');
+
+  if (isGrid3) {
     wrapper.classList.add('grid-3');
   } else {
     wrapper.classList.add('no-grid');
@@ -65,12 +71,17 @@ export default function decorate(block) {
   const card = document.createElement('div');
   card.className = 'sovm-card';
 
-  // ----- IMAGE (ONLY PLACE WITH PICTURE TAG) -----
+  // ----- IMAGE -----
   if (data.image) {
     const imgSrc = extractReferenceUrl(data.image);
 
     const imageWrapper = document.createElement('div');
     imageWrapper.className = 'sovm-card-image';
+
+    // applying logo class for grid
+    if (isGrid3 && data.isLogo) {
+      imageWrapper.classList.add('is-logo');
+    }
 
     imageWrapper.innerHTML = `
       <picture>
@@ -98,7 +109,7 @@ export default function decorate(block) {
     content.append(p);
   }
 
-  // ----- CTA BUTTON WITH SVGUSEMIN ICON -----
+  // ----- CTA BUTTON -----
   if (data.ctatext) {
     const btn = document.createElement('a');
     btn.className = 'sovm-btn';
@@ -107,7 +118,6 @@ export default function decorate(block) {
       ? extractReferenceUrl(data.ctalink)
       : '#';
 
-    // SVG ICON FIRST
     if (data.svgpath && data.svgtext) {
       const svg = document.createElementNS(
         'http://www.w3.org/2000/svg',
@@ -132,7 +142,6 @@ export default function decorate(block) {
       btn.append(svg);
     }
 
-    // Text after icon
     const span = document.createElement('span');
     span.textContent = data.ctatext;
     btn.append(span);

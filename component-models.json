@@ -287,6 +287,12 @@
         "component": "text",
         "name": "svgtext",
         "label": "Svg Icon Name"
+      },
+      {
+        "name": "isLogo",
+        "label": "Is this a logo image?",
+        "type": "boolean",
+        "default": false
       }
     ]
   }
