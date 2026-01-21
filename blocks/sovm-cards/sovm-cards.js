@@ -56,7 +56,7 @@ export default function decorate(block) {
     wrapper.classList.add(data.background);
   }
 
-  if (section && section.classList.contains('grid-3')) {
+    if (section?.classList.contains('grid-3')) {
     wrapper.classList.add('grid-3');
   } else {
     wrapper.classList.add('no-grid');
