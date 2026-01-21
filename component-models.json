@@ -290,9 +290,18 @@
       },
       {
         "name": "isLogo",
-        "label": "Is this a logo image?",
-        "type": "boolean",
-        "default": false
+        "label": "Is this image a logo?",
+        "type": "select",
+        "options": [
+          {
+            "value": "false",
+            "label": "No"
+          },
+          {
+            "value": "true",
+            "label": "Yes"
+          }
+        ]
       }
     ]
   }
