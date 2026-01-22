@@ -78,18 +78,17 @@
           "name": "svgtext",
           "label": "Svg Icon Name"
         },
-        { "component":"multiselect",
+        { "component":"select",
           "name": "isLogo",
           "label": "Is this image a logo?",
-          "valueType": "string",
           "options": [
             {
-              "value": "No",
-              "label": "No"
+              "value": "no",
+              "name": "No"
             },
             {
-              "value": "Yes",
-              "label": "Yes"
+              "value": "yes",
+              "name": "Yes"
             }
           ]
         }
