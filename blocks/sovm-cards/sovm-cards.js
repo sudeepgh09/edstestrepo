@@ -28,7 +28,7 @@ function mapRowsToObject(rows) {
     ctalink,
     svgpath,
     svgtext,
-    isLogo, 
+    isLogo,
   ] = rows;
 
   return {
@@ -47,9 +47,7 @@ function mapRowsToObject(rows) {
 
 export default function decorate(block) {
   const section = block.closest('.section');
-  const rows = [...block.children].map((row) =>
-    [...row.children].map((c) => c.innerHTML.trim()),
-  );
+  const rows = [...block.children].map((row) => [...row.children].map((c) => c.innerHTML.trim()));
 
   const data = mapRowsToObject(rows);
 
